@@ -213,17 +213,19 @@ main {
 }
 
 .btn-primary {
-    background: #ffffff;
-    color: #000000;
+    background: linear-gradient(135deg, #1a5f4a, #2d8a6f);
+    color: #ffffff;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border: 2px solid #ffffff;
+    box-shadow: 0 4px 12px rgba(26, 95, 74, 0.3);
+    border: 2px solid #1a5f4a;
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-    background: #f8f9fa;
+    background: linear-gradient(135deg, #2d8a6f, #1a5f4a);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(26, 95, 74, 0.4);
+    border-color: #2d8a6f;
 }
 
 .btn-secondary {
