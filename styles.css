@@ -417,22 +417,26 @@ main {
 }
 
 .process-steps {
-    max-width: 64rem;
+    max-width: 100%;
     margin: 0 auto 4rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
     width: 100%;
+    gap: 1.5rem;
 }
 
 .process-step {
     position: relative;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 60rem;
+    margin-bottom: 0;
+    width: calc(25% - 1.125rem);
+    min-width: 200px;
+    max-width: 280px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
 }
 
 .process-step:last-child {
@@ -444,7 +448,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .step-number {
@@ -482,13 +486,14 @@ main {
 
 .step-content {
     background: var(--background-color);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     border: 1px solid var(--border-light);
     transition: all 0.3s ease;
     width: 100%;
     text-align: center;
+    height: 100%;
 }
 
 .step-content:hover {
@@ -2524,7 +2529,9 @@ main {
     .process-steps {
         max-width: 100%;
         padding: 0 1rem;
+        flex-direction: column;
         align-items: center;
+        gap: 2rem;
     }
     
     .step-number {
@@ -2535,6 +2542,12 @@ main {
         padding: 0 1rem;
     }
     
+    .process-step {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 2rem;
+    }
+    
     .step-connector {
         top: 2.5rem;
         height: 1.5rem;
@@ -2543,6 +2556,7 @@ main {
     .step-content {
         padding: 1.5rem;
         text-align: center;
+        height: auto;
     }
     
     .step-content h3 {
