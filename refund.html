@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="다채 결혼정보서비스 환불정책 - 가입 해지 및 환불 규정에 대한 안내">
+    <title>환불정책 - 다채</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" class="nav-link"><img src="data/dache_logo.png" alt="다채 로고" class="logo-img"></a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link">홈</a></li>
+                        <li><a href="index.html#services" class="nav-link">서비스</a></li>
+                        <li><a href="index.html#pricing" class="nav-link">비용</a></li>
+                        <li><a href="index.html#about" class="nav-link">소개</a></li>
+                        <li><a href="index.html#contact" class="nav-link">문의</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="terms-page">
+        <div class="container">
+            <div class="terms-header">
+                <h1>환불정책</h1>
+                <p>다채 결혼정보서비스의 가입 해지 및 환불 규정에 대한 안내입니다.</p>
+            </div>
+            
+            <div class="terms-content">
+                <div class="version-selector">
+                    <select id="versionSelect">
+                        <option value="current">현재 버전 (2025.04.05)</option>
+                    </select>
+                </div>
+                
+                <div id="currentVersion" class="version-content active">
+                    <h2>다채 결혼정보서비스 환불정책</h2>
+                    
+                    <p>가입 해지 신청 시점에 따라 해지 가능 여부 및 환불 가능 금액이 달라집니다.</p>
+                    
+                    <h3>환불 규정</h3>
+                    <ul>
+                        <li>결제일로부터 7일 이내에는 가입 해지와 <strong>전액 환불</strong>이 가능합니다.</li>
+                        <li>7일 이후부터는 부분적으로 환불이 진행됩니다.</li>
+                    </ul>
+                    
+                    <div class="refund-details">
+                        <h4>환불 기준표</h4>
+                        <p>7일 이후~ 첫번째 매칭 전까지 가입비의 50% 환불 가능</p>
+                        <p>첫번째 매칭 후 두번째 매칭 전까지 30% 환불 가능</p>
+                        <p>두번째 매칭 후 환불 불가</p>
+                    </div>
+                    
+                    <h3>주의사항</h3>
+                    <ul>
+                        <li><strong>성혼비</strong>는 회원에 따라 차이가 있을 수 있으며 기존 결정사의 가입비 수준으로 계약시 명확히 명시됩니다.</li>
+                        <li>회원이 제공한 신분증명이 허위로 밝혀질 경우 가입이 강제 해지 되며 환불은 불가합니다. 법적 조치가 취해질 수 있습니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="data/dache_logo.png" alt="다채 로고" class="footer-logo-img">
+                    </div>
+                    <p>전문적인 매치메이커 서비스로 당신의 행복한 인연을 만들어갑니다</p>
+                </div>
+                <div class="footer-section">
+                    <h4>회사 정보</h4>
+                    <p>상호명: 다채</p>
+                    <p>대표: 안주희</p>
+                    <p>사업자등록번호: 370-27-01318</p>
+                    <p>국내 결혼중개업 신고번호: 서울-마포-국내-25-0001호</p>
+                </div>
+                <div class="footer-section">
+                    <h4>고객 지원</h4>
+                    <p>이메일: gogiry@gmail.com</p>
+                    <p>운영시간: 평일 09:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h4>법적 고지</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.html" class="terms-link">이용약관</a></li>
+                        <li><a href="privacy.html" class="privacy-link">개인정보처리방침</a></li>
+                        <li><a href="refund.html" class="refund-link">환불정책</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 다채. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 버전 선택 기능
+        const versionSelect = document.getElementById('versionSelect');
+        const currentVersion = document.getElementById('currentVersion');
+        const previousVersion = document.getElementById('previousVersion');
+        
+        if (versionSelect) {
+            versionSelect.addEventListener('change', function() {
+                const selectedVersion = this.value;
+                
+                // 모든 버전 숨기기
+                currentVersion.classList.remove('active');
+                previousVersion.classList.remove('active');
+                
+                // 선택된 버전 보이기
+                if (selectedVersion === 'current') {
+                    currentVersion.classList.add('active');
+                } else if (selectedVersion === 'previous') {
+                    previousVersion.classList.add('active');
+                }
+            });
+        }
+        
+        // 모바일 메뉴 토글
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

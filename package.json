@@ -1,0 +1,27 @@
+{
+  "name": "dache-website",
+  "version": "1.0.0",
+  "description": "다채(Dache) 매치메이커 서비스 웹사이트",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "pm2": "pm2 start server.js --name dache-website",
+    "pm2:stop": "pm2 stop dache-website",
+    "pm2:restart": "pm2 restart dache-website",
+    "pm2:logs": "pm2 logs dache-website"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["매치메이커", "다채", "웹사이트"],
+  "author": "다채",
+  "license": "MIT"
+}
