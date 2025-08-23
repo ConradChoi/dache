@@ -4,11 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const nav = document.querySelector('.nav');
+    const navOverlay = document.querySelector('.nav-overlay');
     
     if (mobileMenuToggle && (navMenu || nav)) {
         mobileMenuToggle.addEventListener('click', function() {
             const targetNav = navMenu || nav;
             targetNav.classList.toggle('active');
+            
+            // 오버레이 토글
+            if (navOverlay) {
+                navOverlay.classList.toggle('active');
+            }
             
             // 햄버거 메뉴 애니메이션
             const spans = this.querySelectorAll('span');
@@ -17,6 +23,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
             } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    }
+    
+    // 오버레이 클릭 시 메뉴 닫기
+    if (navOverlay) {
+        navOverlay.addEventListener('click', function() {
+            const targetNav = navMenu || nav;
+            if (targetNav) {
+                targetNav.classList.remove('active');
+                this.classList.remove('active');
+                
+                // 햄버거 메뉴 애니메이션 복원
+                const spans = mobileMenuToggle.querySelectorAll('span');
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
