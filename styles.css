@@ -1746,6 +1746,10 @@ main {
     margin-bottom: 2rem;
 }
 
+.footer-section {
+    text-align: center;
+}
+
 .footer-section h4 {
     margin-bottom: 1rem;
     color: var(--primary-color);
@@ -2591,6 +2595,8 @@ main {
     gap: 1rem;
     margin-top: 1rem;
     justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .social-link {
