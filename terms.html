@@ -204,36 +204,18 @@
                 
                 // 모든 버전 숨기기
                 currentVersion.classList.remove('active');
-                previousVersion.classList.remove('active');
+                if (previousVersion) {
+                    previousVersion.classList.remove('active');
+                }
                 
                 // 선택된 버전 보이기
                 if (selectedVersion === 'current') {
                     currentVersion.classList.add('active');
-                } else if (selectedVersion === 'previous') {
+                } else if (selectedVersion === 'previous' && previousVersion) {
                     previousVersion.classList.add('active');
                 }
             });
         }
-        
-        // 모바일 메뉴 토글
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const nav = document.querySelector('.nav');
-        
-        if (mobileMenuToggle && nav) {
-            mobileMenuToggle.addEventListener('click', function() {
-                nav.classList.toggle('active');
-                this.classList.toggle('active');
-            });
-        }
-        
-        // 모바일 메뉴 링크 클릭 시 메뉴 닫기
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                nav.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-            });
-        });
     </script>
 </body>
 </html>

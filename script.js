@@ -3,14 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // 모바일 메뉴 토글
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    const nav = document.querySelector('.nav');
     
-    if (mobileMenuToggle && navMenu) {
+    if (mobileMenuToggle && (navMenu || nav)) {
         mobileMenuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            const targetNav = navMenu || nav;
+            targetNav.classList.toggle('active');
             
             // 햄버거 메뉴 애니메이션
             const spans = this.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
+            if (targetNav.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
@@ -26,8 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
+            const targetNav = navMenu || nav;
+            if (targetNav && targetNav.classList.contains('active')) {
+                targetNav.classList.remove('active');
                 const spans = mobileMenuToggle.querySelectorAll('span');
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
@@ -75,23 +78,28 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // 부드러운 스크롤
+    // 부드러운 스크롤 (같은 페이지 내 앵커 링크만)
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
             
-            if (targetSection) {
-                const headerHeight = header.offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
+            // 같은 페이지 내 앵커 링크인 경우에만 preventDefault
+            if (targetId.startsWith('#')) {
+                e.preventDefault();
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
+            // 외부 페이지 링크는 기본 동작 유지
         });
     });
 
