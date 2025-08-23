@@ -528,7 +528,7 @@ main {
 }
 
 .summary-card h3 {
-    font-size: 1.4rem; /* preparation-card h3와 동일한 폰트 크기 */
+    font-size: 1.12rem; /* 1.4rem의 80% = 1.12rem */
     font-weight: 700;
     color: #1a5f4a;
     line-height: 1.3; /* preparation-card h3와 동일한 줄 간격 */
@@ -2518,7 +2518,7 @@ main {
     }
     
     .summary-card h3 {
-        font-size: 1.5rem; /* preparation-card h3와 동일한 폰트 크기 */
+        font-size: 1.2rem; /* 1.5rem의 80% = 1.2rem */
     }
     
     .summary-card p {
