@@ -523,28 +523,6 @@ main {
     font-size: 1.125rem;
     color: var(--light-text);
     line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.step-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.detail-item {
-    background: rgba(26, 95, 74, 0.1);
-    border-radius: var(--border-radius-sm);
-    padding: 1rem;
-    border-left: 4px solid var(--primary-color);
-}
-
-.detail-item p {
-    color: var(--text-color);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin: 0;
-    font-weight: 500;
 }
 
 .process-summary {
@@ -2541,13 +2519,7 @@ main {
         font-size: 1rem;
     }
     
-    .detail-item {
-        text-align: left;
-    }
-    
-    .detail-item p {
-        font-size: 0.95rem;
-    }
+
     
     .summary-card {
         padding: 2rem 1.5rem;
