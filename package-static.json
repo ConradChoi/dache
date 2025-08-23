@@ -1,0 +1,12 @@
+{
+  "name": "dache-static-website",
+  "version": "1.0.0",
+  "description": "다채(Dache) 정적 웹사이트",
+  "scripts": {
+    "build": "echo 'Static site build completed'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": ["매치메이커", "다채", "정적웹사이트"],
+  "author": "다채",
+  "license": "MIT"
+}

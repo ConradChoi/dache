@@ -10,7 +10,9 @@
     "pm2": "pm2 start server.js --name dache-website",
     "pm2:stop": "pm2 stop dache-website",
     "pm2:restart": "pm2 restart dache-website",
-    "pm2:logs": "pm2 logs dache-website"
+    "pm2:logs": "pm2 logs dache-website",
+    "build": "echo 'Static site build completed'",
+    "test": "echo 'No tests specified'"
   },
   "dependencies": {
     "express": "^4.18.2",
