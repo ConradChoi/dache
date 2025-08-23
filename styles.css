@@ -435,11 +435,20 @@ main {
 .process-steps {
     max-width: 64rem;
     margin: 0 auto 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .process-step {
     position: relative;
     margin-bottom: 2rem;
+    width: 100%;
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .process-step:last-child {
@@ -491,6 +500,8 @@ main {
     box-shadow: var(--shadow);
     border: 1px solid var(--border-light);
     transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
 }
 
 .step-content:hover {
@@ -2503,6 +2514,7 @@ main {
     .process-steps {
         max-width: 100%;
         padding: 0 1rem;
+        align-items: center;
     }
     
     .step-number {
