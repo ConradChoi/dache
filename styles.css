@@ -2743,3 +2743,40 @@ main {
     
 
 }
+
+/* 개인정보처리방침 테이블 스타일 */
+.privacy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.privacy-table th,
+.privacy-table td {
+    padding: 0.75rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.privacy-table th {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+.privacy-table td {
+    background: var(--background-color);
+}
+
+/* 모바일 반응형 테이블 */
+@media (max-width: 768px) {
+    .privacy-table {
+        font-size: 0.875rem;
+    }
+    
+    .privacy-table th,
+    .privacy-table td {
+        padding: 0.5rem 0.25rem;
+    }
+}
