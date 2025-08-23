@@ -135,7 +135,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // 폼 데이터 수집
             const formData = new FormData(this);
             const name = formData.get('name');
-            const birthdate = formData.get('birthdate');
+            
+            // 날짜 데이터 수집 (년/월/일)
+            const birthyear = formData.get('birthyear');
+            const birthmonth = formData.get('birthmonth');
+            const birthday = formData.get('birthday');
+            
+            // 날짜 형식 변환 (YYYY-MM-DD)
+            const birthdate = birthyear && birthmonth && birthday ? 
+                `${birthyear}-${birthmonth.padStart(2, '0')}-${birthday.padStart(2, '0')}` : '';
+            
             const phone = formData.get('phone');
             const email = formData.get('email');
             const gender = formData.get('gender');

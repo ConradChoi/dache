@@ -1723,6 +1723,38 @@ main {
     border-color: var(--primary-color);
 }
 
+/* 날짜 입력 그룹 스타일 */
+.date-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.date-input-group input[type="number"] {
+    width: 80px;
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.date-input-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 95, 74, 0.1);
+}
+
+.date-separator {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 0 0.25rem;
+}
+
 .form-group select {
     cursor: pointer;
 }
@@ -2690,5 +2722,21 @@ main {
         background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         color: #ffffff;
         border-color: #dc2743;
+    }
+    
+    /* 모바일 날짜 입력 그룹 */
+    .date-input-group {
+        gap: 0.25rem;
+    }
+    
+    .date-input-group input[type="number"] {
+        width: 60px;
+        padding: 0.5rem 0.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .date-separator {
+        font-size: 0.9rem;
+        margin: 0 0.1rem;
     }
 }
