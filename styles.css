@@ -901,7 +901,7 @@ main {
     }
 
     .category-header {
-        text-align: left;
+        text-align: center;
         background: rgba(26, 95, 74, 0.2);
         color: #1a5f4a;
         font-weight: 700;
@@ -929,7 +929,7 @@ main {
     .category-cell {
         background: rgba(26, 95, 74, 0.08);
         font-weight: 700;
-        text-align: left;
+        text-align: center;
         color: #1a5f4a;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     }
@@ -1275,7 +1275,7 @@ main {
     .comparison-table td:first-child {
         background: #f8f9fa;
         font-weight: 600;
-        text-align: left;
+        text-align: center;
     }
 
     .comparison-table strong {
