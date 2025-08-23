@@ -2599,19 +2599,52 @@ main {
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    color: var(--text-color);
     text-decoration: none;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid transparent;
 }
 
-.social-link:hover {
-    background: rgba(255, 255, 255, 0.2);
+/* 카카오톡 브랜드 컬러 */
+.social-link[href*="kakao"] {
+    background: #FEE500;
+    color: #000000;
+    border-color: #FEE500;
+}
+
+.social-link[href*="kakao"]:hover {
+    background: #FFD700;
+    border-color: #FFD700;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(254, 229, 0, 0.4);
+}
+
+/* Threads 브랜드 컬러 */
+.social-link[href*="threads"] {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+
+.social-link[href*="threads"]:hover {
+    background: #333333;
+    border-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Instagram 브랜드 컬러 */
+.social-link[href*="instagram"] {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: #ffffff;
+    border-color: #dc2743;
+}
+
+.social-link[href*="instagram"]:hover {
+    background: linear-gradient(45deg, #e6683c 0%, #dc2743 25%, #cc2366 50%, #bc1888 75%, #f09433 100%);
+    border-color: #cc2366;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 39, 67, 0.4);
 }
 
 .social-link i {
@@ -2632,5 +2665,24 @@ main {
     
     .social-link i {
         font-size: 1.1rem;
+    }
+    
+    /* 모바일에서도 브랜드 컬러 유지 */
+    .social-link[href*="kakao"] {
+        background: #FEE500;
+        color: #000000;
+        border-color: #FEE500;
+    }
+    
+    .social-link[href*="threads"] {
+        background: #000000;
+        color: #ffffff;
+        border-color: #000000;
+    }
+    
+    .social-link[href*="instagram"] {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        color: #ffffff;
+        border-color: #dc2743;
     }
 }
