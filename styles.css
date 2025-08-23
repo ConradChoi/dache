@@ -370,7 +370,7 @@ main {
 }
 
 .preparation-card h3 {
-    font-size: 1.4rem; /* 1.6rem의 80% = 1.28rem */
+    font-size: 1.12rem; /* 1.4rem의 80% = 1.12rem */
     font-weight: 700;
     color: #1a5f4a;
     line-height: 1.3;
@@ -2460,7 +2460,7 @@ main {
     }
     
     .preparation-card h3 {
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* 1.5rem의 80% = 1.2rem */
     }
     
     .preparation-content p {
