@@ -2125,7 +2125,7 @@ main {
 }
 
 /* 이용약관 페이지 스타일 */
-.terms-page {
+.terms-page, .privacy-page {
     padding: 120px 0 80px;
     background-color: #f8f9fa;
 }
