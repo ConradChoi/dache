@@ -62,6 +62,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Close icon 클릭 시 모바일 메뉴 닫기
+    function closeMobileMenu() {
+        const targetNav = navMenu || nav;
+        if (targetNav && targetNav.classList.contains('active')) {
+            targetNav.classList.remove('active');
+            
+            // 오버레이 제거
+            if (navOverlay) {
+                navOverlay.classList.remove('active');
+            }
+            
+            // 햄버거 메뉴 애니메이션 복원
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    }
+
+    // Close icon 클릭 이벤트 (이벤트 위임 사용)
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.nav-menu') && e.target.matches('.nav-menu::before, .nav-menu::before *')) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close icon 영역 클릭 이벤트 (더 정확한 방법)
+    if (navMenu || nav) {
+        const targetNav = navMenu || nav;
+        targetNav.addEventListener('click', function(e) {
+            // Close icon 영역 클릭 확인 (우상단 영역)
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            
+            // 우상단 60x60px 영역 (close icon 위치)
+            if (clickX > rect.width - 60 && clickY < 60) {
+                closeMobileMenu();
+            }
+        });
+    }
+
     // 스크롤 시 헤더 스타일 변경
     const header = document.querySelector('.header');
     let lastScrollTop = 0;
