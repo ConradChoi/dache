@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; border-radius: 4px; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Contact Form Test</h1>
+    <p>Google Apps Script 연결을 테스트합니다.</p>
+    
+    <form id="testForm">
+        <div class="form-group">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" value="테스트 사용자" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email" value="test@example.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">연락처:</label>
+            <input type="tel" id="phone" name="phone" value="010-1234-5678" required>
+        </div>
+        
+        <button type="submit">테스트 전송</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>전송 중...</p>';
+            
+            // 테스트 데이터
+            const testData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                birthdate: '1990-01-01',
+                gender: 'male',
+                education: 'bachelor',
+                region: 'seoul',
+                occupation: '회사원',
+                income: '30-50',
+                meeting1: '2025-01-15T14:00',
+                meeting2: '2025-01-16T15:00',
+                timestamp: new Date().toISOString(),
+                ip_address: 'N/A',
+                user_agent: navigator.userAgent
+            };
+            
+            // Google Apps Script URL (새로운 배포 URL)
+            const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-Vzv4xOv02ICysaVpuFNIuhr9l2kRs0Ce7vN2nBy_h2EKXEUss83b1di98hy2GMWN/exec';
+            
+            // JSONP 방식으로 테스트
+            const script = document.createElement('script');
+            const callbackName = 'callback_' + Date.now();
+            
+            // 전역 콜백 함수 생성
+            window[callbackName] = function(response) {
+                console.log('Google Apps Script 응답:', response);
+                
+                if (response && response.success) {
+                    resultDiv.innerHTML = `<div class="result success">
+                        <h3>✅ 성공!</h3>
+                        <p>메시지: ${response.message}</p>
+                        <p>데이터가 Google 스프레드시트에 저장되었습니다.</p>
+                    </div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="result error">
+                        <h3>❌ 실패</h3>
+                        <p>메시지: ${response ? response.message : '응답 없음'}</p>
+                    </div>`;
+                }
+                
+                // 정리
+                delete window[callbackName];
+                document.head.removeChild(script);
+            };
+            
+            // URL에 데이터와 콜백 함수명 추가
+            const url = new URL(GOOGLE_APPS_SCRIPT_URL);
+            url.searchParams.append('callback', callbackName);
+            url.searchParams.append('data', JSON.stringify(testData));
+            
+            console.log('요청 URL:', url.toString());
+            
+            // 스크립트 태그로 요청
+            script.src = url.toString();
+            script.onerror = () => {
+                resultDiv.innerHTML = `<div class="result error">
+                    <h3>❌ 네트워크 오류</h3>
+                    <p>Google Apps Script에 연결할 수 없습니다.</p>
+                    <p>브라우저 콘솔을 확인해주세요.</p>
+                </div>`;
+                
+                delete window[callbackName];
+                document.head.removeChild(script);
+            };
+            
+            document.head.appendChild(script);
+        });
+    </script>
+</body>
+</html>

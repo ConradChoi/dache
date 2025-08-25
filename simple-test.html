@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Google Apps Script Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 10px; padding: 10px; border-radius: 4px; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .info { background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>Google Apps Script 연결 테스트</h1>
+    
+    <div class="test-section">
+        <h3>1. 기본 연결 테스트</h3>
+        <button onclick="testBasicConnection()">기본 연결 테스트</button>
+        <div id="basicResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. GET 요청 테스트</h3>
+        <button onclick="testGetRequest()">GET 요청 테스트</button>
+        <div id="getResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. 간단한 데이터 전송 테스트</h3>
+        <button onclick="testSimpleData()">간단한 데이터 전송</button>
+        <div id="dataResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>4. 에러 로그</h3>
+        <div id="errorLog" style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto;"></div>
+    </div>
+    
+    <script>
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-Vzv4xOv02ICysaVpuFNIuhr9l2kRs0Ce7vN2nBy_h2EKXEUss83b1di98hy2GMWN/exec';
+        
+        function logError(message) {
+            const errorLog = document.getElementById('errorLog');
+            const timestamp = new Date().toLocaleTimeString();
+            errorLog.innerHTML += `[${timestamp}] ${message}<br>`;
+            errorLog.scrollTop = errorLog.scrollHeight;
+        }
+        
+        function testBasicConnection() {
+            const resultDiv = document.getElementById('basicResult');
+            resultDiv.innerHTML = '<p>테스트 중...</p>';
+            
+            // 기본 fetch 요청 (CORS 테스트)
+            fetch(GOOGLE_APPS_SCRIPT_URL)
+                .then(response => {
+                    console.log('응답 상태:', response.status);
+                    console.log('응답 헤더:', response.headers);
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('응답 내용:', text);
+                    resultDiv.innerHTML = `<div class="result success">
+                        <h4>✅ 연결 성공!</h4>
+                        <p>응답: ${text}</p>
+                    </div>`;
+                })
+                .catch(error => {
+                    console.error('연결 오류:', error);
+                    logError(`기본 연결 오류: ${error.message}`);
+                    resultDiv.innerHTML = `<div class="result error">
+                        <h4>❌ 연결 실패</h4>
+                        <p>오류: ${error.message}</p>
+                    </div>`;
+                });
+        }
+        
+        function testGetRequest() {
+            const resultDiv = document.getElementById('getResult');
+            resultDiv.innerHTML = '<p>테스트 중...</p>';
+            
+            // URL 파라미터로 테스트
+            const testUrl = `${GOOGLE_APPS_SCRIPT_URL}?test=true`;
+            
+            fetch(testUrl)
+                .then(response => response.text())
+                .then(text => {
+                    resultDiv.innerHTML = `<div class="result success">
+                        <h4>✅ GET 요청 성공!</h4>
+                        <p>응답: ${text}</p>
+                    </div>`;
+                })
+                .catch(error => {
+                    logError(`GET 요청 오류: ${error.message}`);
+                    resultDiv.innerHTML = `<div class="result error">
+                        <h4>❌ GET 요청 실패</h4>
+                        <p>오류: ${error.message}</p>
+                    </div>`;
+                });
+        }
+        
+        function testSimpleData() {
+            const resultDiv = document.getElementById('dataResult');
+            resultDiv.innerHTML = '<p>테스트 중...</p>';
+            
+            // 간단한 테스트 데이터
+            const testData = {
+                name: '테스트',
+                email: 'test@test.com',
+                timestamp: new Date().toISOString()
+            };
+            
+            // JSONP 방식으로 테스트
+            const script = document.createElement('script');
+            const callbackName = 'callback_' + Date.now();
+            
+            window[callbackName] = function(response) {
+                console.log('JSONP 응답:', response);
+                resultDiv.innerHTML = `<div class="result success">
+                    <h4>✅ JSONP 전송 성공!</h4>
+                    <p>응답: ${JSON.stringify(response)}</p>
+                </div>`;
+                
+                delete window[callbackName];
+                document.head.removeChild(script);
+            };
+            
+            const url = new URL(GOOGLE_APPS_SCRIPT_URL);
+            url.searchParams.append('callback', callbackName);
+            url.searchParams.append('data', JSON.stringify(testData));
+            
+            console.log('요청 URL:', url.toString());
+            logError(`JSONP 요청 시작: ${callbackName}`);
+            
+            script.src = url.toString();
+            script.onerror = () => {
+                logError(`JSONP 스크립트 로드 실패: ${callbackName}`);
+                resultDiv.innerHTML = `<div class="result error">
+                    <h4>❌ JSONP 전송 실패</h4>
+                    <p>스크립트 로드 실패</p>
+                </div>`;
+                
+                delete window[callbackName];
+                document.head.removeChild(script);
+            };
+            
+            document.head.appendChild(script);
+        }
+        
+        // 페이지 로드 시 기본 정보 표시
+        window.onload = function() {
+            logError(`테스트 시작: ${new Date().toLocaleString()}`);
+            logError(`Google Apps Script URL: ${GOOGLE_APPS_SCRIPT_URL}`);
+            logError(`현재 도메인: ${window.location.origin}`);
+        };
+    </script>
+</body>
+</html>
