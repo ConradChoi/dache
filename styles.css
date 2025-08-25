@@ -2742,6 +2742,11 @@ main {
     font-size: 1.2rem;
 }
 
+.social-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    object-fit: contain;
+}
 /* 모바일 반응형 소셜 링크 */
 @media (max-width: 768px) {
     .social-links {
@@ -2758,6 +2763,10 @@ main {
         font-size: 1.1rem;
     }
     
+    .social-icon {
+        width: 1.1rem;
+        height: 1.1rem;
+    }
     /* 모바일에서도 브랜드 컬러 유지 */
     .social-link[href*="kakao"] {
         background: #FEE500;
