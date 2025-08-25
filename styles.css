@@ -309,6 +309,20 @@ main {
     background: var(--light-bg);
 }
 
+/* 서비스 섹션 헤더 */
+.services-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.services-subtitle {
+    font-size: 1.25rem;
+    color: var(--light-text);
+    margin-top: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
 /* 누구를 만날 수 있는지 섹션 */
 .who-to-meet {
     padding: var(--section-padding) 0;
