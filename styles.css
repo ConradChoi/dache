@@ -1798,6 +1798,13 @@ main {
     min-height: 120px;
 }
 
+.form-hint {
+    color: var(--light-text);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
 /* 푸터 */
 .footer {
     background: var(--text-color);
