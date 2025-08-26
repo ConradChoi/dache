@@ -1760,6 +1760,22 @@ main {
     margin-bottom: 1.5rem;
 }
 
+.other-input {
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.other-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;

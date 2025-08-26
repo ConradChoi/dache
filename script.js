@@ -408,6 +408,38 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 모든 모달이 페이지로 이동되어 모달 관련 함수들 제거됨
     
+    // "기타" 선택 시 입력창 표시/숨김 기능
+    const educationSelect = document.getElementById('education');
+    const educationOtherInput = document.getElementById('education-other');
+    const regionSelect = document.getElementById('region');
+    const regionOtherInput = document.getElementById('region-other');
+    
+    if (educationSelect && educationOtherInput) {
+        educationSelect.addEventListener('change', function() {
+            if (this.value === 'other') {
+                educationOtherInput.style.display = 'block';
+                educationOtherInput.required = true;
+            } else {
+                educationOtherInput.style.display = 'none';
+                educationOtherInput.required = false;
+                educationOtherInput.value = '';
+            }
+        });
+    }
+    
+    if (regionSelect && regionOtherInput) {
+        regionSelect.addEventListener('change', function() {
+            if (this.value === 'other') {
+                regionOtherInput.style.display = 'block';
+                regionOtherInput.required = true;
+            } else {
+                regionOtherInput.style.display = 'none';
+                regionOtherInput.required = false;
+                regionOtherInput.value = '';
+            }
+        });
+    }
+    
     // 모든 모달 상태 확인 (개발용)
     window.checkModalStatus = function() {
         Object.keys(modals).forEach(key => {
