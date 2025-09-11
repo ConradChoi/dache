@@ -131,11 +131,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
         
         .faq-question:hover {
             background: #f8f9fa;
+        }
+        
+        .faq-question:active {
+            background: #e9ecef;
         }
         
         .faq-question.active {
@@ -143,9 +151,15 @@
             color: #2c3e50;
         }
         
+        .faq-question.active:active {
+            background: #8ee4c3;
+        }
+        
         .faq-icon {
             font-size: 1.2rem;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+            will-change: transform;
         }
         
         .faq-question.active .faq-icon {
@@ -153,14 +167,21 @@
         }
         
         .faq-answer {
-            display: none;
-            padding: 25px 30px;
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
             background: #f1f3f4;
-            transition: all 0.3s ease;
+            opacity: 0;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: max-height, padding, opacity;
         }
         
         .faq-answer.active {
-            display: block;
+            padding: 25px 30px;
+            max-height: 500px;
+            opacity: 1;
         }
         
         .faq-answer p {
@@ -665,8 +686,25 @@
             
             // FAQ 아코디언 기능
             faqQuestions.forEach(question => {
+                let touchStartTime = 0;
+                
+                question.addEventListener('touchstart', function(e) {
+                    touchStartTime = Date.now();
+                }, { passive: true });
+                
+                question.addEventListener('touchend', function(e) {
+                    const touchDuration = Date.now() - touchStartTime;
+                    // 터치 시간이 너무 짧으면 클릭으로 처리하지 않음 (깜박거림 방지)
+                    if (touchDuration < 50) {
+                        e.preventDefault();
+                        return;
+                    }
+                }, { passive: false });
+                
                 question.addEventListener('click', function(e) {
                     e.preventDefault();
+                    e.stopPropagation();
+                    
                     const answer = this.nextElementSibling;
                     const isActive = this.classList.contains('active');
                     
@@ -684,6 +722,16 @@
                         this.classList.add('active');
                         if (answer && answer.classList.contains('faq-answer')) {
                             answer.classList.add('active');
+                            
+                            // 모바일에서 부드러운 스크롤
+                            setTimeout(() => {
+                                if (window.innerWidth <= 768) {
+                                    this.scrollIntoView({ 
+                                        behavior: 'smooth', 
+                                        block: 'nearest' 
+                                    });
+                                }
+                            }, 300);
                         }
                     }
                 });
