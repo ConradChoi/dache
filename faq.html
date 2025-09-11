@@ -59,6 +59,51 @@
             margin: 0 auto;
         }
         
+        .faq-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            margin: 0 4px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 100px;
+        }
+        
+        .tab-btn:hover {
+            background: #f8f9fa;
+            color: #495057;
+        }
+        
+        .tab-btn.active {
+            background: #3498db;
+            color: white;
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+        }
+        
+        .faq-category {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-category.hidden {
+            display: none;
+        }
+        
         .faq-item {
             background: white;
             border-radius: 12px;
@@ -255,6 +300,17 @@
                 padding: 0 10px;
             }
             
+            .faq-tabs {
+                margin-bottom: 30px;
+                padding: 6px;
+            }
+            
+            .tab-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+                min-width: 80px;
+            }
+            
             .faq-header h1 {
                 font-size: 2rem;
             }
@@ -327,8 +383,17 @@
             </div>
             
             <div class="faq-container">
+                <!-- 탭 메뉴 -->
+                <div class="faq-tabs">
+                    <button class="tab-btn active" data-tab="all">전체</button>
+                    <button class="tab-btn" data-tab="service">서비스 관련</button>
+                    <button class="tab-btn" data-tab="chaumji">채움지</button>
+                    <button class="tab-btn" data-tab="cost">비용 관련</button>
+                    <button class="tab-btn" data-tab="usage">서비스 이용</button>
+                </div>
+                
                 <!-- 서비스 관련 FAQ -->
-                <div class="faq-category">
+                <div class="faq-category" data-category="service">
                     <h2>서비스 관련</h2>
                     
                     <div class="faq-item">
@@ -381,7 +446,7 @@
                 </div>
                 
                 <!-- 채움지 관련 FAQ -->
-                <div class="faq-category">
+                <div class="faq-category" data-category="chaumji">
                     <h2>채움지</h2>
                     
                     <div class="faq-item">
@@ -416,7 +481,7 @@
                 </div>
                 
                 <!-- 비용 관련 FAQ -->
-                <div class="faq-category">
+                <div class="faq-category" data-category="cost">
                     <h2>비용 관련</h2>
                     
                     <div class="faq-item">
@@ -452,7 +517,7 @@
                 </div>
                 
                 <!-- 서비스 이용 FAQ -->
-                <div class="faq-category">
+                <div class="faq-category" data-category="usage">
                     <h2>서비스 이용</h2>
                     
                     <div class="faq-item">
@@ -580,7 +645,10 @@
         // FAQ 아코디언 기능
         document.addEventListener('DOMContentLoaded', function() {
             const faqQuestions = document.querySelectorAll('.faq-question');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const faqCategories = document.querySelectorAll('.faq-category');
             
+            // FAQ 아코디언 기능
             faqQuestions.forEach(question => {
                 question.addEventListener('click', function() {
                     const answer = this.nextElementSibling;
@@ -596,6 +664,37 @@
                     if (!isActive) {
                         this.classList.add('active');
                         answer.classList.add('active');
+                    }
+                });
+            });
+            
+            // 탭 기능
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // 모든 탭 버튼 비활성화
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // 클릭한 탭 버튼 활성화
+                    this.classList.add('active');
+                    
+                    // 모든 카테고리 숨기기
+                    faqCategories.forEach(category => {
+                        category.classList.add('hidden');
+                    });
+                    
+                    // 선택된 탭에 따라 카테고리 표시
+                    if (targetTab === 'all') {
+                        // 전체 탭: 모든 카테고리 표시
+                        faqCategories.forEach(category => {
+                            category.classList.remove('hidden');
+                        });
+                    } else {
+                        // 특정 카테고리 탭: 해당 카테고리만 표시
+                        const targetCategory = document.querySelector(`[data-category="${targetTab}"]`);
+                        if (targetCategory) {
+                            targetCategory.classList.remove('hidden');
+                        }
                     }
                 });
             });
