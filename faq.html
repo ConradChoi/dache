@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="다채 - 프라이빗 매칭 서비스">
+    <meta property="og:description" content="검증된 사람과 자만추를 하고 싶다면, 다채에서 당신의 완벽한 파트너를 찾아보세요">
+    <meta property="og:image" content="https://www.dache.kr/data/dache_mainbg_1024x768.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://www.dache.kr">
+    <meta property="og:site_name" content="다채">
+    <meta property="og:locale" content="ko_KR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="다채 - 프라이빗 매칭 서비스">
+    <meta property="twitter:description" content="검증된 사람과 자만추를 하고 싶다면, 다채에서 당신의 완벽한 파트너를 찾아보세요">
+    <meta property="twitter:image" content="https://www.dache.kr/data/dache_mainbg_1024x768.png">
+    
+    <!-- 카카오톡 -->
+    <meta property="og:image:alt" content="다채">
+    <title>다채 - 자주 묻는 질문</title>
+    <meta name="description" content="다채 서비스에 대한 자주 묻는 질문과 답변을 확인하세요">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .faq-page {
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .faq-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .faq-header p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .faq-question {
+            padding: 25px 30px;
+            background: #fff;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-question.active {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .faq-answer.active {
+            padding: 25px 30px;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            margin: 0;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .faq-answer ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .faq-category {
+            margin-bottom: 40px;
+        }
+        
+        .faq-category h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .contact-info {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .faq-page {
+                padding: 80px 0 60px;
+            }
+            
+            .faq-header h1 {
+                font-size: 2rem;
+            }
+            
+            .faq-question {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            
+            .faq-answer.active {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" class="nav-link"><img src="data/dache_logo.png" alt="다채 로고" class="logo-img"></a>
+                </div>
+                <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">홈</a></li>
+                    <li><a href="index.html#services" class="nav-link">서비스</a></li>
+                    <li><a href="index.html#chaumji" class="nav-link">채움지</a></li>
+                    <li><a href="index.html#pricing" class="nav-link">비용</a></li>
+                    <li><a href="index.html#ceo-message" class="nav-link">대표 인사말</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="index.html#contact" class="nav-link">문의</a></li>
+                </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 모바일 메뉴 오버레이 -->
+    <div class="nav-overlay"></div>
+
+    <!-- FAQ 섹션 -->
+    <section class="faq-page">
+        <div class="container">
+            <div class="faq-header">
+                <h1>자주 묻는 질문</h1>
+                <p>다채 서비스에 대해 궁금한 점들을 확인해보세요</p>
+            </div>
+            
+            <div class="faq-container">
+                <!-- 서비스 관련 FAQ -->
+                <div class="faq-category">
+                    <h2>서비스 관련</h2>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            다채는 어떤 서비스인가요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>다채는 '자문추(自問追) 세대'를 위한 프라이빗 매칭 서비스입니다. 기존 결정사와는 다른 방식으로, 조건을 검증하면서도 그 너머의 가치관과 삶의 결로 연결하는 새로운 매칭 시스템을 제공합니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            기존 결정사와 어떤 차이가 있나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>다채는 다음과 같은 차별점을 가지고 있습니다:</p>
+                            <ul>
+                                <li>다른 매칭 시스템: 개인의 가치관과 삶의 결을 중시</li>
+                                <li>다른 수익 모델: 투명하고 공정한 비용 구조</li>
+                                <li>검증된 사람들과의 매칭: 신뢰할 수 있는 파트너 찾기</li>
+                                <li>프라이빗한 서비스: 개인정보 보호와 안전한 만남</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            매칭은 어떻게 이루어지나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>다채는 개인의 기본 조건뿐만 아니라 가치관, 취미, 삶의 목표 등을 종합적으로 고려하여 매칭을 진행합니다. AI 기술과 전문 상담사의 분석을 통해 가장 적합한 파트너를 찾아드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 가입 관련 FAQ -->
+                <div class="faq-category">
+                    <h2>가입 관련</h2>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            가입 조건이 있나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>다채는 만 20세 이상의 미혼 남녀가 가입 가능합니다. 또한 신분증명서를 통한 본인 확인이 필요하며, 제공하신 정보의 사실 여부가 검증됩니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            가입 절차는 어떻게 되나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>가입 절차는 다음과 같습니다:</p>
+                            <ul>
+                                <li>1. 온라인 가입 신청</li>
+                                <li>2. 신분증명서 제출</li>
+                                <li>3. 개인정보 제공 및 검증</li>
+                                <li>4. 심사 및 승인</li>
+                                <li>5. 계약 체결 및 가입비 납부</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            가입비는 얼마인가요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>가입비는 개인별로 상이할 수 있으며, 기존 결정사의 가입비 수준으로 책정됩니다. 정확한 비용은 상담을 통해 안내해드립니다. 7일 이내 전액 환불이 가능합니다.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 서비스 이용 관련 FAQ -->
+                <div class="faq-category">
+                    <h2>서비스 이용</h2>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            매칭 횟수는 어떻게 되나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>회원은 12개월 동안 총 3회의 매칭을 받을 수 있습니다. 매칭 횟수는 환불 기준이 되므로 신중하게 이용하시기 바랍니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            개인정보는 안전하게 보호되나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>네, 다채는 개인정보보호법에 따라 회원의 개인정보를 안전하게 보호합니다. 제공하신 정보는 매칭 목적으로만 사용되며, 제3자에게 제공되지 않습니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            매칭 상대방 정보는 언제 알 수 있나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>매칭이 확정되면 만남 전에 상대방의 기본 정보를 안내해드립니다. 상세한 개인정보는 상대방의 동의 하에 만남 후에 공유됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 환불 관련 FAQ -->
+                <div class="faq-category">
+                    <h2>환불 관련</h2>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            언제 환불이 가능한가요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>환불 규정은 다음과 같습니다:</p>
+                            <ul>
+                                <li>결제일로부터 7일 이내: 전액 환불</li>
+                                <li>7일 이후~첫 번째 매칭 전: 50% 환불</li>
+                                <li>첫 번째 매칭 후~두 번째 매칭 전: 30% 환불</li>
+                                <li>두 번째 매칭 후: 환불 불가</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            환불 신청은 어떻게 하나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>환불을 원하시는 경우 고객센터로 연락주시면 신청 절차를 안내해드립니다. 신청서 작성 후 3-5일 내에 환불이 처리됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 기타 FAQ -->
+                <div class="faq-category">
+                    <h2>기타</h2>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            연령 제한이 있나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>다채는 만 20세 이상의 성인 남녀를 대상으로 합니다. 상한 연령은 따로 없으며, 모든 연령대의 회원분들이 이용하실 수 있습니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            해외 거주자도 가입할 수 있나요?
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>현재 다채는 국내 거주자를 대상으로 한 서비스입니다. 해외 거주자분들의 가입은 제한되어 있으니 양해 부탁드립니다.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 문의 안내 -->
+                <div class="contact-info">
+                    <h3>더 궁금한 점이 있으신가요?</h3>
+                    <p>FAQ에서 답을 찾지 못하셨다면 언제든지 문의해주세요.</p>
+                    <a href="index.html#contact" class="contact-btn">문의하기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>다채</h3>
+                    <p>새로운 세대를 위한 새로운 매칭 서비스</p>
+                </div>
+                <div class="footer-section">
+                    <h4>서비스</h4>
+                    <ul>
+                        <li><a href="index.html#services">서비스 소개</a></li>
+                        <li><a href="index.html#chaumji">채움지</a></li>
+                        <li><a href="index.html#pricing">비용 안내</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>고객지원</h4>
+                    <ul>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="index.html#contact">문의하기</a></li>
+                        <li><a href="privacy.html">개인정보처리방침</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>약관</h4>
+                    <ul>
+                        <li><a href="terms.html">이용약관</a></li>
+                        <li><a href="refund.html">환불정책</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 다채. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // 모든 FAQ 닫기
+                    faqQuestions.forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    });
+                    
+                    // 클릭한 FAQ만 열기 (이미 열려있었다면 닫기)
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
