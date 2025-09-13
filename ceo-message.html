@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="다채 - 대표 인사말">
+    <meta property="og:description" content="다채 대표 안주희의 인사말을 확인하세요">
+    <meta property="og:image" content="https://www.dache.kr/data/dache_mainbg_1024x768.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://www.dache.kr">
+    <meta property="og:site_name" content="다채">
+    <meta property="og:locale" content="ko_KR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="다채 - 대표 인사말">
+    <meta property="twitter:description" content="다채 대표 안주희의 인사말을 확인하세요">
+    <meta property="twitter:image" content="https://www.dache.kr/data/dache_mainbg_1024x768.png">
+    
+    <!-- 카카오톡 -->
+    <meta property="og:image:alt" content="다채">
+    <title>다채 - 대표 인사말</title>
+    <meta name="description" content="다채 대표 안주희의 인사말을 통해 다채의 철학과 비전을 확인하세요">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 헤더 스타일 보호 */
+        .header {
+            background: var(--background-color) !important;
+            box-shadow: var(--shadow) !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+        }
+        
+        .ceo-message-page {
+            padding: 120px 0 80px;
+            background: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .ceo-message-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .ceo-message-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .ceo-message-header p {
+            font-size: 1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .message-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .message-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        
+        .message-card-content {
+            padding: 60px;
+        }
+        
+        .message-quote {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+        }
+        
+        .quote-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin: 0;
+            font-style: italic;
+        }
+        
+        .highlight {
+            color: #76dbb9;
+            font-weight: 700;
+        }
+        
+        .message-body {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #495057;
+        }
+        
+        .message-body p {
+            margin-bottom: 25px;
+        }
+        
+        .message-highlight {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #76dbb9;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .message-highlight-box {
+            background: linear-gradient(135deg, #76dbb9 0%, #8ee4c3 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(118, 219, 185, 0.3);
+        }
+        
+        .message-highlight-box p {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .message-signature {
+            text-align: right;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .message-signature p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #76dbb9;
+            margin: 0;
+        }
+        
+        .back-to-home {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: #76dbb9;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(118, 219, 185, 0.3);
+        }
+        
+        .back-btn:hover {
+            background: #8ee4c3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(118, 219, 185, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .ceo-message-page {
+                padding: 140px 0 60px;
+            }
+            
+            .ceo-message-header h1 {
+                font-size: 2rem;
+            }
+            
+            .ceo-message-header p {
+                font-size: 0.9rem;
+            }
+            
+            .message-card-content {
+                padding: 30px 20px;
+            }
+            
+            .quote-text {
+                font-size: 1.4rem;
+            }
+            
+            .message-body {
+                font-size: 1rem;
+            }
+            
+            .message-highlight {
+                font-size: 1.1rem;
+            }
+            
+            .message-highlight-box p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" class="nav-link"><img src="data/dache_logo.png" alt="다채 로고" class="logo-img"></a>
+                </div>
+                <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">홈</a></li>
+                    <li><a href="index.html#services" class="nav-link">서비스</a></li>
+                    <li><a href="index.html#chaumji" class="nav-link">채움지</a></li>
+                    <li><a href="index.html#pricing" class="nav-link">비용</a></li>
+                    <li><a href="ceo-message.html" class="nav-link active">대표 인사말</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="index.html#contact" class="nav-link">문의</a></li>
+                </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 모바일 메뉴 오버레이 -->
+    <div class="nav-overlay"></div>
+
+    <!-- 대표 인사말 섹션 -->
+    <section class="ceo-message-page">
+        <div class="container">
+            <div class="ceo-message-header">
+                <h1>대표 인사말</h1>
+                <p>다채의 철학과 방향성을 전합니다</p>
+            </div>
+            
+            <div class="message-content">
+                <div class="message-card">
+                    <div class="message-card-content">
+                        <!-- 메인 인용구 -->
+                        <div class="message-quote">
+                            <blockquote class="quote-text">
+                                "<span class="highlight">사랑</span>은 여전히, 우리가 가장 기대는 <span class="highlight">가치</span>입니다."
+                            </blockquote>
+                        </div>
+                        
+                        <!-- 메시지 본문 -->
+                        <div class="message-body">
+                            <p>빠르게 소비되고 쉽게 판단되는 시대, 그 안에서 진짜 관계를 맺는 건 점점 더 어려워지고 있습니다.</p>
+                            
+                            <p>기존의 결혼정보회사는 진짜 연결보다 '조건', '횟수', '재가입'에 집중되어 있었고 저 역시 그 구조의 한계를 직접 경험했습니다.</p>
+                            
+                            <p class="message-highlight">그래서 다채를 시작했습니다.</p>
+                            
+                            <p>스스로 묻고(自問), 자기 삶을 주체적으로 추구(追)하는 세대를 위해 사람 그 자체로 연결될 수 있는 공간, 회원의 성혼이 곧 회사의 성장인 구조, 그리고 진심을 다해 한 사람의 가능성에 몰입하는 매칭.</p>
+                            
+                            <div class="message-highlight-box">
+                                <p>다채의 모든 회원은 '성공할 프로젝트'이자 서로에게 희망이 될 수 있는 한 사람입니다.</p>
+                            </div>
+                            
+                            <p>지금 다채에 온 당신은 이미 중요한 결심을 한 사람입니다. 이 여정이 따뜻하고 즐겁고 결국은 기쁘게 떠나는 '탈퇴'로 이어지길 바랍니다.</p>
+                        </div>
+                        
+                        <!-- 서명 -->
+                        <div class="message-signature">
+                            <p>— 다채 대표 안주희</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="data/dache_logo.png" alt="다채 로고" class="footer-logo-img">
+                    </div>
+                    <p>새로운 세대를 위한 새로운 매칭 서비스로 당신의 행복한 인연을 만들어갑니다</p>
+                </div>
+                <div class="footer-section">
+                    <h4>회사 정보</h4>
+                    <p>상호명: 다채</p>
+                    <p>대표: 안주희</p>
+                    <p>사업자등록번호: 370-27-01318</p>
+                    <p>국내 결혼중개업 신고번호: 서울-마포-국내-25-0001호</p>
+                </div>
+                <div class="footer-section">
+                    <h4>고객 지원</h4>
+                    <div class="social-links">
+                        <a href="https://open.kakao.com/me/dache" target="_blank" class="social-link" title="카카오톡 오픈채팅">
+                            <i class="fab fa-kickstarter-k"></i>
+                        </a>
+                        <a href="https://www.threads.com/@dache_matching" target="_blank" class="social-link" title="Threads">
+                            <img src="data/threads_white.png" alt="Threads" class="social-icon">
+                        </a>
+                        <a href="https://www.instagram.com/dache_matching/" target="_blank" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>법적 고지</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.html" class="terms-link">이용약관</a></li>
+                        <li><a href="privacy.html" class="privacy-link">개인정보처리방침</a></li>
+                        <li><a href="refund.html" class="refund-link">환불정책</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 다채. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 메뉴 토글
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navOverlay = document.querySelector('.nav-overlay');
+            const nav = document.querySelector('.nav');
+            
+            mobileMenuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+            
+            navOverlay.addEventListener('click', function() {
+                nav.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+    </script>
+</body>
+</html>
