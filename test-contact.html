@@ -3,119 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form Test</title>
+    <title>Contact Form Test - 다채</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
-        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background: #0056b3; }
-        .result { margin-top: 20px; padding: 15px; border-radius: 4px; }
-        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
-        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            z-index: 1000;
+        }
+        .notification.success {
+            background: #4caf50;
+        }
+        .notification.error {
+            background: #f44336;
+        }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
-    <h1>Contact Form Test</h1>
-    <p>Google Apps Script 연결을 테스트합니다.</p>
-    
-    <form id="testForm">
-        <div class="form-group">
-            <label for="name">이름:</label>
-            <input type="text" id="name" name="name" value="테스트 사용자" required>
-        </div>
+    <div class="test-form">
+        <h1>Contact Form Test</h1>
+        <p>Google Sheets 연동 테스트를 위한 간단한 폼입니다.</p>
         
-        <div class="form-group">
-            <label for="email">이메일:</label>
-            <input type="email" id="email" name="email" value="test@example.com" required>
-        </div>
+        <form id="testForm">
+            <div class="form-group">
+                <label for="name">이름 *</label>
+                <input type="text" id="name" name="name" value="테스트 사용자" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="birthdate">생년월일 *</label>
+                <input type="date" id="birthdate" name="birthdate" value="1990-01-01" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">연락처 *</label>
+                <input type="tel" id="phone" name="phone" value="010-1234-5678" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">이메일 *</label>
+                <input type="email" id="email" name="email" value="test@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">성별 *</label>
+                <select id="gender" name="gender" required>
+                    <option value="">선택하세요</option>
+                    <option value="male" selected>남성</option>
+                    <option value="female">여성</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="education">학력 *</label>
+                <select id="education" name="education" required>
+                    <option value="">선택하세요</option>
+                    <option value="high_school">고등학교</option>
+                    <option value="college" selected>대학교</option>
+                    <option value="graduate">대학원</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="region">지역 *</label>
+                <select id="region" name="region" required>
+                    <option value="">선택하세요</option>
+                    <option value="seoul" selected>서울</option>
+                    <option value="gyeonggi">경기</option>
+                    <option value="busan">부산</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="occupation">직업 *</label>
+                <input type="text" id="occupation" name="occupation" value="개발자" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="income">소득 *</label>
+                <input type="text" id="income" name="income" value="6000만원" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="meeting1">티타임 가능한 날짜와 시간 1 *</label>
+                <input type="datetime-local" id="meeting1" name="meeting1" value="2025-01-20T14:00" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="meeting2">티타임 가능한 날짜와 시간 2</label>
+                <input type="datetime-local" id="meeting2" name="meeting2" value="2025-01-21T15:00">
+            </div>
+            
+            <button type="submit">테스트 전송</button>
+        </form>
         
-        <div class="form-group">
-            <label for="phone">연락처:</label>
-            <input type="tel" id="phone" name="phone" value="010-1234-5678" required>
+        <div class="log" id="log">
+            <strong>로그:</strong><br>
+            <div id="logContent">테스트를 시작하세요...</div>
         </div>
-        
-        <button type="submit">테스트 전송</button>
-    </form>
-    
-    <div id="result"></div>
-    
+    </div>
+
     <script>
+        function log(message) {
+            const logContent = document.getElementById('logContent');
+            const timestamp = new Date().toLocaleTimeString();
+            logContent.innerHTML += `[${timestamp}] ${message}<br>`;
+            logContent.scrollTop = logContent.scrollHeight;
+        }
+
+        function showNotification(message, type = 'info') {
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
         document.getElementById('testForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = '<p>전송 중...</p>';
+            log('폼 제출 시작');
             
-            // 테스트 데이터
-            const testData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                birthdate: '1990-01-01',
-                gender: 'male',
-                education: 'bachelor',
-                region: 'seoul',
-                occupation: '회사원',
-                income: '30-50',
-                meeting1: '2025-01-15T14:00',
-                meeting2: '2025-01-16T15:00',
+            // 폼 데이터 수집
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const birthdate = formData.get('birthdate');
+            const phone = formData.get('phone');
+            const email = formData.get('email');
+            const gender = formData.get('gender');
+            const education = formData.get('education');
+            const region = formData.get('region');
+            const occupation = formData.get('occupation');
+            const income = formData.get('income');
+            const meeting1 = formData.get('meeting1');
+            const meeting2 = formData.get('meeting2');
+            
+            log(`수집된 데이터: ${name}, ${email}, ${phone}`);
+            
+            // 유효성 검사
+            if (!name || !birthdate || !phone || !email || !gender || !education || !region || !occupation || !income || !meeting1) {
+                log('❌ 필수 항목 누락');
+                showNotification('필수 항목을 모두 입력해주세요.', 'error');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                log('❌ 이메일 형식 오류');
+                showNotification('올바른 이메일 주소를 입력해주세요.', 'error');
+                return;
+            }
+            
+            // Google Apps Script로 데이터 전송
+            const inquiryData = {
+                name,
+                birthdate,
+                phone,
+                email,
+                gender,
+                education,
+                region,
+                occupation,
+                income,
+                meeting1,
+                meeting2: meeting2 || null,
                 timestamp: new Date().toISOString(),
                 ip_address: 'N/A',
                 user_agent: navigator.userAgent
             };
             
-            // Google Apps Script URL (새로운 배포 URL)
+            log('📤 Google Apps Script로 데이터 전송 시작');
+            log(`전송 URL: https://script.google.com/macros/s/AKfycbw-Vzv4xOv02ICysaVpuFNIuhr9l2kRs0Ce7vN2nBy_h2EKXEUss83b1di98hy2GMWN/exec`);
+            
+            // 로딩 상태 표시
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '전송 중...';
+            submitBtn.disabled = true;
+            
+            // Google Apps Script URL
             const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-Vzv4xOv02ICysaVpuFNIuhr9l2kRs0Ce7vN2nBy_h2EKXEUss83b1di98hy2GMWN/exec';
             
-            // JSONP 방식으로 테스트
+            // JSONP 방식으로 데이터 전송
             const script = document.createElement('script');
             const callbackName = 'callback_' + Date.now();
             
+            log(`콜백 함수명: ${callbackName}`);
+            log(`전송할 데이터: ${JSON.stringify(inquiryData, null, 2)}`);
+            
             // 전역 콜백 함수 생성
             window[callbackName] = function(response) {
-                console.log('Google Apps Script 응답:', response);
+                log('📨 Google Apps Script 응답 받음');
+                log(`응답 데이터: ${JSON.stringify(response, null, 2)}`);
                 
                 if (response && response.success) {
-                    resultDiv.innerHTML = `<div class="result success">
-                        <h3>✅ 성공!</h3>
-                        <p>메시지: ${response.message}</p>
-                        <p>데이터가 Google 스프레드시트에 저장되었습니다.</p>
-                    </div>`;
+                    log('✅ 성공: 데이터가 스프레드시트에 저장됨');
+                    showNotification('테스트 데이터가 성공적으로 전송되었습니다!', 'success');
+                    this.reset();
                 } else {
-                    resultDiv.innerHTML = `<div class="result error">
-                        <h3>❌ 실패</h3>
-                        <p>메시지: ${response ? response.message : '응답 없음'}</p>
-                    </div>`;
+                    log('❌ 실패: 응답 데이터 문제');
+                    log(`에러 메시지: ${response ? response.message : '알 수 없는 오류'}`);
+                    showNotification('데이터 전송 중 오류가 발생했습니다.', 'error');
                 }
                 
                 // 정리
                 delete window[callbackName];
                 document.head.removeChild(script);
-            };
+                
+                // 버튼 상태 복원
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }.bind(this);
             
             // URL에 데이터와 콜백 함수명 추가
             const url = new URL(GOOGLE_APPS_SCRIPT_URL);
             url.searchParams.append('callback', callbackName);
-            url.searchParams.append('data', JSON.stringify(testData));
+            url.searchParams.append('data', JSON.stringify(inquiryData));
             
-            console.log('요청 URL:', url.toString());
+            log(`최종 요청 URL: ${url.toString()}`);
             
             // 스크립트 태그로 요청
             script.src = url.toString();
             script.onerror = () => {
-                resultDiv.innerHTML = `<div class="result error">
-                    <h3>❌ 네트워크 오류</h3>
-                    <p>Google Apps Script에 연결할 수 없습니다.</p>
-                    <p>브라우저 콘솔을 확인해주세요.</p>
-                </div>`;
-                
+                log('❌ 스크립트 로드 실패');
+                showNotification('네트워크 오류가 발생했습니다.', 'error');
                 delete window[callbackName];
                 document.head.removeChild(script);
+                
+                // 버튼 상태 복원
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
             };
             
             document.head.appendChild(script);
+            log('📡 스크립트 태그 추가 완료');
         });
     </script>
 </body>

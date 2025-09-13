@@ -417,8 +417,163 @@
             const contactForm = document.querySelector('.contact-form');
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('문의가 성공적으로 전달되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+                
+                // 폼 데이터 수집
+                const formData = new FormData(this);
+                const name = formData.get('name');
+                const birthdate = formData.get('birthdate');
+                const phone = formData.get('phone');
+                const email = formData.get('email');
+                const gender = formData.get('gender');
+                const education = formData.get('education') === 'other' ? formData.get('education-other') : formData.get('education');
+                const region = formData.get('region') === 'other' ? formData.get('region-other') : formData.get('region');
+                const occupation = formData.get('occupation');
+                const income = formData.get('income');
+                const meeting1 = formData.get('meeting1');
+                const meeting2 = formData.get('meeting2');
+                
+                // 간단한 유효성 검사
+                if (!name || !birthdate || !phone || !email || !gender || !education || !region || !occupation || !income || !meeting1) {
+                    showNotification('필수 항목을 모두 입력해주세요.', 'error');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showNotification('올바른 이메일 주소를 입력해주세요.', 'error');
+                    return;
+                }
+                
+                // Google Apps Script로 데이터 전송
+                const inquiryData = {
+                    name,
+                    birthdate,
+                    phone,
+                    email,
+                    gender,
+                    education,
+                    region,
+                    occupation,
+                    income,
+                    meeting1,
+                    meeting2: meeting2 || null,
+                    timestamp: new Date().toISOString(),
+                    ip_address: 'N/A',
+                    user_agent: navigator.userAgent
+                };
+                
+                // 로딩 상태 표시
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = '전송 중...';
+                submitBtn.disabled = true;
+                
+                // Google Apps Script URL
+                const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-Vzv4xOv02ICysaVpuFNIuhr9l2kRs0Ce7vN2nBy_h2EKXEUss83b1di98hy2GMWN/exec';
+                
+                // JSONP 방식으로 데이터 전송
+                const script = document.createElement('script');
+                const callbackName = 'callback_' + Date.now();
+                
+                console.log('JSONP 요청 시작:', callbackName);
+                console.log('전송할 데이터:', inquiryData);
+                
+                // 전역 콜백 함수 생성
+                window[callbackName] = function(response) {
+                    console.log('Google Apps Script 응답 받음:', response);
+                    
+                    if (response && response.success) {
+                        console.log('성공: 데이터가 스프레드시트에 저장됨');
+                        showNotification('가입 문의가 성공적으로 등록되었습니다. 빠른 시일 내에 연락드리겠습니다.', 'success');
+                        this.reset();
+                    } else {
+                        console.error('실패: 응답 데이터 문제', response);
+                        showNotification('문의 등록 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'error');
+                    }
+                    
+                    // 정리
+                    delete window[callbackName];
+                    document.head.removeChild(script);
+                    
+                    // 버튼 상태 복원
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }.bind(this);
+                
+                // URL에 데이터와 콜백 함수명 추가
+                const url = new URL(GOOGLE_APPS_SCRIPT_URL);
+                url.searchParams.append('callback', callbackName);
+                url.searchParams.append('data', JSON.stringify(inquiryData));
+                
+                // 스크립트 태그로 요청
+                script.src = url.toString();
+                script.onerror = () => {
+                    showNotification('문의 등록 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'error');
+                    delete window[callbackName];
+                    document.head.removeChild(script);
+                    
+                    // 버튼 상태 복원
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                };
+                
+                document.head.appendChild(script);
             });
+            
+            // 이메일 유효성 검사
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // 알림 메시지 표시
+            function showNotification(message, type = 'info') {
+                // 기존 알림 제거
+                const existingNotification = document.querySelector('.notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+                
+                // 새 알림 생성
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <span class="notification-message">${message}</span>
+                        <button class="notification-close">&times;</button>
+                    </div>
+                `;
+                
+                // 스타일 적용
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 10000;
+                    max-width: 400px;
+                    animation: slideInRight 0.3s ease;
+                `;
+                
+                // 닫기 버튼 이벤트
+                const closeBtn = notification.querySelector('.notification-close');
+                closeBtn.addEventListener('click', () => {
+                    notification.remove();
+                });
+                
+                // 자동 제거 (5초 후)
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.style.animation = 'slideOutRight 0.3s ease';
+                        setTimeout(() => notification.remove(), 300);
+                    }
+                }, 5000);
+                
+                document.body.appendChild(notification);
+            }
         });
     </script>
 </body>
