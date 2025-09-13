@@ -191,7 +191,8 @@
         
         .faq-answer.active {
             padding: 25px 30px;
-            max-height: 500px;
+            max-height: none;
+            height: auto;
             opacity: 1;
         }
         
@@ -345,6 +346,8 @@
             
             .faq-answer.active {
                 padding: 20px;
+                max-height: none;
+                height: auto;
             }
             
             .service-notice {
@@ -560,8 +563,8 @@
                         <div class="faq-answer">
                             <p>감정의 빌드업 속도가 서로 다른 회원을 위해 속도를 맞출 수 있도록 다양한 형태의 데이트 옵션과 미팅시 활용할 수 있는 대화 소재도 제공해 드려요.</p>
                             
-                            <div style="overflow-x: auto; margin: 20px 0;">
-                                <table style="width: 100%; min-width: 800px; border-collapse: collapse; font-size: 14px; height: auto; min-height: fit-content;">
+                            <div style="overflow-x: auto; overflow-y: visible; margin: 20px 0; height: auto; min-height: 400px;">
+                                <table style="width: 100%; min-width: 800px; border-collapse: collapse; font-size: 14px; height: auto; min-height: 400px; table-layout: auto;">
                                     <thead>
                                         <tr style="background-color: #f8f9fa;">
                                             <th style="border: 1px solid #dee2e6; padding: 15px; text-align: left; font-weight: 600; color: #495057; width: 15%;">카테고리</th>
