@@ -36,8 +36,6 @@ function doPost(e) {
       data.region || '',
       data.occupation || '',
       data.income || '',
-      data.meeting1 || '',
-      data.meeting2 || '',
       data.ip_address || '',
       data.user_agent || '',
       'New' // Status
@@ -82,8 +80,6 @@ function createSheetWithHeaders(spreadsheet) {
     'Region',
     'Occupation',
     'Income',
-    'Meeting Time 1',
-    'Meeting Time 2',
     'IP Address',
     'User Agent',
     'Status'
@@ -150,8 +146,6 @@ function doGet(e) {
         data.region || '',
         data.occupation || '',
         data.income || '',
-        data.meeting1 || '',
-        data.meeting2 || '',
         data.ip_address || '',
         data.user_agent || '',
         'New' // Status

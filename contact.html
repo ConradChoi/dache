@@ -305,16 +305,6 @@
                         <input type="text" id="income" name="income" placeholder="예 : 6000만원+보너스 1000" required>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="meeting1">매치메이커와 티타임 가능한 날짜와 시간 1 *</label>
-                        <input type="datetime-local" id="meeting1" name="meeting1" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="meeting2">매치메이커와 티타임 가능한 날짜와 시간 2</label>
-                        <input type="datetime-local" id="meeting2" name="meeting2">
-                    </div>
-                    
                     <button type="submit" class="btn btn-primary">매치메이커에게 전달하기</button>
                 </form>
                 
@@ -429,11 +419,9 @@
                 const region = formData.get('region') === 'other' ? formData.get('region-other') : formData.get('region');
                 const occupation = formData.get('occupation');
                 const income = formData.get('income');
-                const meeting1 = formData.get('meeting1');
-                const meeting2 = formData.get('meeting2');
                 
                 // 간단한 유효성 검사
-                if (!name || !birthdate || !phone || !email || !gender || !education || !region || !occupation || !income || !meeting1) {
+                if (!name || !birthdate || !phone || !email || !gender || !education || !region || !occupation || !income) {
                     showNotification('필수 항목을 모두 입력해주세요.', 'error');
                     return;
                 }
@@ -454,8 +442,6 @@
                     region,
                     occupation,
                     income,
-                    meeting1,
-                    meeting2: meeting2 || null,
                     timestamp: new Date().toISOString(),
                     ip_address: 'N/A',
                     user_agent: navigator.userAgent
@@ -468,7 +454,7 @@
                 submitBtn.disabled = true;
                 
                 // Google Apps Script URL
-                const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-Vzv4xOv02ICysaVpuFNIuhr9l2kRs0Ce7vN2nBy_h2EKXEUss83b1di98hy2GMWN/exec';
+                const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzHHcIY0hk5BoavAEW3v27GLMba3hUlcJfbFI4TmVkvQPRWN2VFHuHldSd76_p07nqccA/exec';
                 
                 // JSONP 방식으로 데이터 전송
                 const script = document.createElement('script');
