@@ -278,7 +278,7 @@
                         
                         <!-- 서명 -->
                         <div class="message-signature">
-                            <p>— 다채 대표 안주희</p>
+                            <p>— 다채 대표 안주희<br />前 글로벌헤드헌터<br />前 프라이빗 뱅커</p>
                         </div>
                     </div>
                 </div>
@@ -316,6 +316,9 @@
                         <a href="https://www.instagram.com/dache_matching/" target="_blank" class="social-link" title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
+                        <a href="https://blog.naver.com/dachematching" target="_blank" class="social-link" title="네이버 블로그">
+                            <img src="data/naver_icon.png" alt="네이버" class="social-icon">
+                        </a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -340,17 +343,29 @@
             const navOverlay = document.querySelector('.nav-overlay');
             const nav = document.querySelector('.nav');
             
-            mobileMenuToggle.addEventListener('click', function() {
-                nav.classList.toggle('active');
-                navOverlay.classList.toggle('active');
-                document.body.classList.toggle('menu-open');
-            });
+            console.log('Mobile menu elements:', { mobileMenuToggle, navOverlay, nav });
             
-            navOverlay.addEventListener('click', function() {
-                nav.classList.remove('active');
-                navOverlay.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function(e) {
+                    console.log('Mobile menu toggle clicked');
+                    e.preventDefault();
+                    const navMenu = nav.querySelector('.nav-menu');
+                    navMenu.classList.toggle('active');
+                    navOverlay.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+            } else {
+                console.error('Mobile menu toggle element not found');
+            }
+            
+            if (navOverlay) {
+                navOverlay.addEventListener('click', function() {
+                    const navMenu = nav.querySelector('.nav-menu');
+                    navMenu.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                });
+            }
         });
     </script>
 </body>

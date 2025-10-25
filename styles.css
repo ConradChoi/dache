@@ -1524,10 +1524,15 @@ main {
 }
 
 .social-icon {
-    width: 20px;
-    height: 20px;
+    width: 1.4rem;
+    height: 1.4rem;
     object-fit: contain;
     filter: brightness(0) invert(1);
+}
+
+/* 네이버 아이콘은 원본 색상 유지 */
+.social-link[href*="naver"] .social-icon {
+    filter: none;
 }
 
 .social-link:hover .social-icon {
@@ -1720,6 +1725,10 @@ main {
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
     }
 }
 
@@ -2386,8 +2395,13 @@ main {
     }
     
     .social-icon {
-        width: 1.1rem;
-        height: 1.1rem;
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+    
+    /* 네이버 아이콘은 원본 색상 유지 */
+    .social-link[href*="naver"] .social-icon {
+        filter: none;
     }
     /* 모바일에서도 브랜드 컬러 유지 */
     .social-link[href*="kakao"] {

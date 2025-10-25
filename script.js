@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close icon 클릭 이벤트 (이벤트 위임 사용)
     document.addEventListener('click', function(e) {
-        if (e.target.closest('.nav-menu') && e.target.matches('.nav-menu::before, .nav-menu::before *')) {
+        if (e.target.closest('.nav-menu') && e.target.matches('.close-icon, .close-icon *')) {
             closeMobileMenu();
         }
     });
