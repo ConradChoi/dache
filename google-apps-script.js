@@ -36,6 +36,7 @@ function doPost(e) {
       data.region || '',
       data.occupation || '',
       data.income || '',
+      data.past_decision || '', // 과거 결정사 진행
       data.ip_address || '',
       data.user_agent || '',
       'New' // Status
@@ -80,6 +81,7 @@ function createSheetWithHeaders(spreadsheet) {
     'Region',
     'Occupation',
     'Income',
+    'Past Decision',
     'IP Address',
     'User Agent',
     'Status'
@@ -146,6 +148,7 @@ function doGet(e) {
         data.region || '',
         data.occupation || '',
         data.income || '',
+        data.past_decision || '', // 과거 결정사 진행
         data.ip_address || '',
         data.user_agent || '',
         'New' // Status
