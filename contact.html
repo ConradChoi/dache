@@ -446,7 +446,7 @@
                 const pastDecision = formData.get('past_decision');
 
                 // 간단한 유효성 검사
-                if (!name || !birthdate || !phone || !email || !gender || !education || !region || !occupation || !income) {
+                if (!name || !birthdate || !phone || !email || !gender || !education || !region || !occupation || !income || !pastDecision) {
                     showNotification('필수 항목을 모두 입력해주세요.', 'error');
                     return;
                 }
