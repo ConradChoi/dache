@@ -106,11 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 스크롤 시 헤더 스타일 변경
     const header = document.querySelector('.header');
-    let lastScrollTop = 0;
-    
+
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
+
         if (scrollTop > 100) {
             header.style.background = 'rgba(255, 255, 255, 0.95)';
             header.style.backdropFilter = 'blur(10px)';
@@ -118,8 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
             header.style.background = 'var(--background-color)';
             header.style.backdropFilter = 'none';
         }
-        
-        lastScrollTop = scrollTop;
     });
 
     // 스크롤 애니메이션
@@ -275,43 +272,83 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // 모든 모달 상태 확인 (개발용)
-    window.checkModalStatus = function() {
-        Object.keys(modals).forEach(key => {
-            const modalData = modals[key];
-            const { modal, name } = modalData;
-            if (modal) {
-                console.log(`${name} 모달 상태:`, modal.style.display);
-                console.log(`${name} 모달 요소:`, modal);
-            }
-        });
-    };
-    
-    // 환불정책 모달 직접 열기 (강제)
-    window.forceOpenRefundModal = function() {
-        const refundModal = document.getElementById('refundModal');
-        if (refundModal) {
-            console.log('강제로 환불정책 모달 열기');
-            refundModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            console.log('환불정책 모달 display:', refundModal.style.display);
-        } else {
-            console.error('환불정책 모달을 찾을 수 없습니다');
-        }
-    };
-    
-    // 환불정책 링크 직접 테스트
-    window.testRefundLink = function() {
-        const refundLink = document.querySelector('.refund-link');
-        if (refundLink) {
-            console.log('환불정책 링크 찾음:', refundLink);
-            console.log('환불정책 링크 클릭 이벤트 리스너 수:', refundLink.onclick ? '1' : '0');
-        } else {
-            console.error('환불정책 링크를 찾을 수 없습니다');
-        }
-    };
+
+    initReviewsSlider();
 });
+
+function initReviewsSlider() {
+    const slider = document.querySelector('.reviews-slider');
+    const dotsContainer = document.querySelector('.reviews-dots');
+    if (!slider || !dotsContainer) return;
+
+    const cards = Array.from(slider.querySelectorAll('.review-card'));
+    if (cards.length === 0) return;
+
+    let currentIndex = 0;
+    let autoInterval = null;
+    let touchStartX = 0;
+
+    function getVisibleCount() { return window.innerWidth >= 769 ? 3 : 1; }
+    function getMaxIndex() { return Math.max(0, cards.length - getVisibleCount()); }
+
+    function buildDots() {
+        const max = getMaxIndex();
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i <= max; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'dot' + (i === currentIndex ? ' active' : '');
+            dot.setAttribute('aria-label', `후기 ${i + 1}`);
+            dot.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
+            d.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    function getStep() {
+        // 카드 간 실제 간격(gap 포함)을 BoundingClientRect로 계산
+        if (cards.length < 2) return cards[0].offsetWidth;
+        return cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
+    }
+
+    function goTo(index) {
+        const max = getMaxIndex();
+        currentIndex = ((index % (max + 1)) + (max + 1)) % (max + 1);
+        slider.style.transform = `translateX(${-getStep() * currentIndex}px)`;
+        updateDots();
+    }
+
+    function startAuto() {
+        clearInterval(autoInterval);
+        autoInterval = setInterval(() => goTo(currentIndex + 1), 4000);
+    }
+
+    function stopAuto() { clearInterval(autoInterval); }
+
+    slider.addEventListener('mouseenter', stopAuto);
+    slider.addEventListener('mouseleave', startAuto);
+
+    slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { stopAuto(); goTo(currentIndex + (diff > 0 ? 1 : -1)); startAuto(); }
+    });
+
+    window.addEventListener('resize', () => {
+        stopAuto();
+        currentIndex = 0;
+        slider.style.transform = '';
+        buildDots();
+        startAuto();
+    });
+
+    buildDots();
+    startAuto();
+}
 
 // CSS 애니메이션 추가
 const style = document.createElement('style');

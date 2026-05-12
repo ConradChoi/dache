@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="다채 - 문의 & 티타임 예약">
@@ -11,22 +12,23 @@
     <meta property="og:image" content="https://www.dache.kr/data/dache_mainbg_1024x768.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://www.dache.kr">
+    <meta property="og:url" content="https://www.dache.kr/contact.html">
     <meta property="og:site_name" content="다채">
     <meta property="og:locale" content="ko_KR">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="다채 - 문의 & 티타임 예약">
     <meta property="twitter:description" content="다채 가입 문의 및 매치메이커와의 티타임을 예약하세요">
     <meta property="twitter:image" content="https://www.dache.kr/data/dache_mainbg_1024x768.png">
-    
+
     <!-- 카카오톡 -->
     <meta property="og:image:alt" content="다채">
     <title>다채 - 문의 & 티타임 예약</title>
     <meta name="description" content="다채 가입 문의 및 매치메이커와의 티타임을 예약하세요">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .contact-page {
@@ -34,31 +36,31 @@
             background: #ffffff;
             min-height: 100vh;
         }
-        
+
         .contact-header {
             text-align: center;
             margin-bottom: 60px;
         }
-        
+
         .contact-header h1 {
             font-size: 2.5rem;
             font-weight: 700;
             color: #2c3e50;
             margin-bottom: 20px;
         }
-        
+
         .contact-header p {
             font-size: 1rem;
             color: #6c757d;
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .contact-content {
             max-width: 800px;
             margin: 0 auto;
         }
-        
+
         .contact-form {
             background: white;
             padding: 40px;
@@ -66,11 +68,11 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid #e9ecef;
         }
-        
+
         .form-group {
             margin-bottom: 25px;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
@@ -78,7 +80,7 @@
             color: #2c3e50;
             font-size: 1rem;
         }
-        
+
         .form-group input,
         .form-group select {
             width: 100%;
@@ -89,7 +91,7 @@
             transition: all 0.3s ease;
             background: #f8f9fa;
         }
-        
+
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
@@ -97,15 +99,15 @@
             background: white;
             box-shadow: 0 0 0 3px rgba(118, 219, 185, 0.1);
         }
-        
+
         .form-group input::placeholder {
             color: #adb5bd;
         }
-        
+
         .other-input {
             margin-top: 10px;
         }
-        
+
         .btn-primary {
             width: 100%;
             padding: 18px;
@@ -119,12 +121,12 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(118, 219, 185, 0.3);
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(118, 219, 185, 0.4);
         }
-        
+
         .contact-info {
             background: #f8f9fa;
             border-radius: 15px;
@@ -132,26 +134,26 @@
             margin-top: 40px;
             text-align: center;
         }
-        
+
         .contact-info h3 {
             color: #2c3e50;
             margin-bottom: 15px;
             font-size: 1.3rem;
         }
-        
+
         .contact-info p {
             color: #6c757d;
             margin-bottom: 20px;
             line-height: 1.6;
         }
-        
+
         .contact-links {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
         }
-        
+
         .contact-link {
             display: inline-flex;
             align-items: center;
@@ -165,31 +167,31 @@
             transition: all 0.3s ease;
             border: 2px solid #76dbb9;
         }
-        
+
         .contact-link:hover {
             background: #76dbb9;
             color: white;
             transform: translateY(-2px);
         }
-        
+
         @media (max-width: 768px) {
             .contact-page {
                 padding: 140px 0 60px;
             }
-            
+
             .contact-header h1 {
                 font-size: 2rem;
             }
-            
+
             .contact-form {
                 padding: 25px 20px;
             }
-            
+
             .contact-links {
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .contact-link {
                 width: 100%;
                 max-width: 300px;
@@ -198,24 +200,26 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 헤더 -->
     <header class="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="https://www.dache.kr" class="nav-link"><img src="data/dache_logo.png" alt="다채 로고" class="logo-img"></a>
+                    <a href="https://www.dache.kr" class="nav-link"><img src="data/dache_logo.png" alt="다채 로고"
+                            class="logo-img"></a>
                 </div>
                 <nav class="nav">
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">홈</a></li>
-                    <li><a href="index.html#services" class="nav-link">서비스</a></li>
-                    <li><a href="index.html#chaumji" class="nav-link">채움지</a></li>
-                    <li><a href="index.html#pricing" class="nav-link">비용</a></li>
-                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
-                    <li><a href="contact.html" class="nav-link active">문의&티타임</a></li>
-                    <li><a href="ceo-message.html" class="nav-link">대표 인사말</a></li>
-                </ul>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link">홈</a></li>
+                        <li><a href="index.html#services" class="nav-link">서비스</a></li>
+                        <li><a href="index.html#chaumji" class="nav-link">채움지</a></li>
+                        <li><a href="index.html#pricing" class="nav-link">비용</a></li>
+                        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                        <li><a href="contact.html" class="nav-link active">문의&티타임</a></li>
+                        <li><a href="ceo-message.html" class="nav-link">대표 인사말</a></li>
+                    </ul>
                 </nav>
                 <div class="mobile-menu-toggle">
                     <span></span>
@@ -225,7 +229,7 @@
             </div>
         </div>
     </header>
-    
+
     <!-- 모바일 메뉴 오버레이 -->
     <div class="nav-overlay"></div>
 
@@ -236,29 +240,29 @@
                 <h1>가입 문의 & 티타임 예약</h1>
                 <p>다채에 가입하고 매치메이커와의 티타임을 예약하세요</p>
             </div>
-            
+
             <div class="contact-content">
                 <form class="contact-form">
                     <div class="form-group">
                         <label for="name">이름 *</label>
                         <input type="text" id="name" name="name" placeholder="이름을 입력해주세요" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="birthdate">생년월일 *</label>
                         <input type="date" id="birthdate" name="birthdate" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="phone">연락처 *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="연락처를 입력해주세요" required>
+                        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="email">이메일 *</label>
-                        <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
+                        <input type="email" id="email" name="email" placeholder="mail@mail.com" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="gender">성별 *</label>
                         <select id="gender" name="gender" required>
@@ -267,7 +271,7 @@
                             <option value="female">여</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="education">학력 *</label>
                         <select id="education" name="education" required>
@@ -277,9 +281,10 @@
                             <option value="phd">박사</option>
                             <option value="other">기타</option>
                         </select>
-                        <input type="text" id="education-other" name="education-other" placeholder="학력을 입력해주세요" class="other-input" style="display: none;">
+                        <input type="text" id="education-other" name="education-other" placeholder="학력을 입력해주세요"
+                            class="other-input" style="display: none;">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="region">사는 지역 *</label>
                         <select id="region" name="region" required>
@@ -292,14 +297,15 @@
                             <option value="jeju">제주도</option>
                             <option value="other">기타</option>
                         </select>
-                        <input type="text" id="region-other" name="region-other" placeholder="지역을 입력해주세요" class="other-input" style="display: none;">
+                        <input type="text" id="region-other" name="region-other" placeholder="지역을 입력해주세요"
+                            class="other-input" style="display: none;">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="occupation">직업 *</label>
                         <input type="text" id="occupation" name="occupation" placeholder="직업을 입력해주세요" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="income">소득 *</label>
                         <input type="text" id="income" name="income" placeholder="예 : 6000만원+보너스 1000" required>
@@ -316,7 +322,7 @@
 
                     <button type="submit" class="btn btn-primary">매치메이커에게 전달하기</button>
                 </form>
-                
+
             </div>
         </div>
     </section>
@@ -344,13 +350,16 @@
                         <a href="https://open.kakao.com/me/dache" target="_blank" class="social-link" title="카카오톡 오픈채팅">
                             <i class="fab fa-kickstarter-k"></i>
                         </a>
-                        <a href="https://www.threads.com/@dache_matching" target="_blank" class="social-link" title="Threads">
+                        <a href="https://www.threads.com/@dache_matching" target="_blank" class="social-link"
+                            title="Threads">
                             <img src="data/threads_white.png" alt="Threads" class="social-icon">
                         </a>
-                        <a href="https://www.instagram.com/dache_matching/" target="_blank" class="social-link" title="Instagram">
+                        <a href="https://www.instagram.com/dache_matching/" target="_blank" class="social-link"
+                            title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://blog.naver.com/dachematching" target="_blank" class="social-link" title="네이버 블로그">
+                        <a href="https://blog.naver.com/dachematching" target="_blank" class="social-link"
+                            title="네이버 블로그">
                             <img src="data/naver_icon.png" alt="네이버" class="social-icon">
                         </a>
                     </div>
@@ -372,15 +381,15 @@
 
     <script>
         // 모바일 메뉴 토글
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
             const navOverlay = document.querySelector('.nav-overlay');
             const nav = document.querySelector('.nav');
-            
+
             console.log('Mobile menu elements:', { mobileMenuToggle, navOverlay, nav });
-            
+
             if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function(e) {
+                mobileMenuToggle.addEventListener('click', function (e) {
                     console.log('Mobile menu toggle clicked');
                     e.preventDefault();
                     const navMenu = nav.querySelector('.nav-menu');
@@ -391,23 +400,23 @@
             } else {
                 console.error('Mobile menu toggle element not found');
             }
-            
+
             if (navOverlay) {
-                navOverlay.addEventListener('click', function() {
+                navOverlay.addEventListener('click', function () {
                     const navMenu = nav.querySelector('.nav-menu');
                     navMenu.classList.remove('active');
                     navOverlay.classList.remove('active');
                     document.body.classList.remove('menu-open');
                 });
             }
-            
+
             // 기타 입력 필드 토글
             const educationSelect = document.getElementById('education');
             const educationOther = document.getElementById('education-other');
             const regionSelect = document.getElementById('region');
             const regionOther = document.getElementById('region-other');
-            
-            educationSelect.addEventListener('change', function() {
+
+            educationSelect.addEventListener('change', function () {
                 if (this.value === 'other') {
                     educationOther.style.display = 'block';
                     educationOther.required = true;
@@ -416,8 +425,8 @@
                     educationOther.required = false;
                 }
             });
-            
-            regionSelect.addEventListener('change', function() {
+
+            regionSelect.addEventListener('change', function () {
                 if (this.value === 'other') {
                     regionOther.style.display = 'block';
                     regionOther.required = true;
@@ -426,12 +435,12 @@
                     regionOther.required = false;
                 }
             });
-            
+
             // 폼 제출 처리
             const contactForm = document.querySelector('.contact-form');
-            contactForm.addEventListener('submit', function(e) {
+            contactForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+
                 // 폼 데이터 수집
                 const formData = new FormData(this);
                 const name = formData.get('name');
@@ -450,12 +459,12 @@
                     showNotification('필수 항목을 모두 입력해주세요.', 'error');
                     return;
                 }
-                
+
                 if (!isValidEmail(email)) {
                     showNotification('올바른 이메일 주소를 입력해주세요.', 'error');
                     return;
                 }
-                
+
                 // Google Apps Script로 데이터 전송
                 const inquiryData = {
                     name,
@@ -472,27 +481,27 @@
                     ip_address: 'N/A',
                     user_agent: navigator.userAgent
                 };
-                
+
                 // 로딩 상태 표시
                 const submitBtn = this.querySelector('button[type="submit"]');
                 const originalText = submitBtn.textContent;
                 submitBtn.textContent = '전송 중...';
                 submitBtn.disabled = true;
-                
+
                 // Google Apps Script URL
                 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzHHcIY0hk5BoavAEW3v27GLMba3hUlcJfbFI4TmVkvQPRWN2VFHuHldSd76_p07nqccA/exec';
-                
+
                 // JSONP 방식으로 데이터 전송
                 const script = document.createElement('script');
                 const callbackName = 'callback_' + Date.now();
-                
+
                 console.log('JSONP 요청 시작:', callbackName);
                 console.log('전송할 데이터:', inquiryData);
-                
+
                 // 전역 콜백 함수 생성
-                window[callbackName] = function(response) {
+                window[callbackName] = function (response) {
                     console.log('Google Apps Script 응답 받음:', response);
-                    
+
                     if (response && response.success) {
                         console.log('성공: 데이터가 스프레드시트에 저장됨');
                         showNotification('가입 문의가 성공적으로 등록되었습니다. 빠른 시일 내에 연락드리겠습니다.', 'success');
@@ -501,42 +510,42 @@
                         console.error('실패: 응답 데이터 문제', response);
                         showNotification('문의 등록 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'error');
                     }
-                    
+
                     // 정리
                     delete window[callbackName];
                     document.head.removeChild(script);
-                    
+
                     // 버튼 상태 복원
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                 }.bind(this);
-                
+
                 // URL에 데이터와 콜백 함수명 추가
                 const url = new URL(GOOGLE_APPS_SCRIPT_URL);
                 url.searchParams.append('callback', callbackName);
                 url.searchParams.append('data', JSON.stringify(inquiryData));
-                
+
                 // 스크립트 태그로 요청
                 script.src = url.toString();
                 script.onerror = () => {
                     showNotification('문의 등록 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 'error');
                     delete window[callbackName];
                     document.head.removeChild(script);
-                    
+
                     // 버튼 상태 복원
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                 };
-                
+
                 document.head.appendChild(script);
             });
-            
+
             // 이메일 유효성 검사
             function isValidEmail(email) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return emailRegex.test(email);
             }
-            
+
             // 알림 메시지 표시
             function showNotification(message, type = 'info') {
                 // 기존 알림 제거
@@ -544,7 +553,7 @@
                 if (existingNotification) {
                     existingNotification.remove();
                 }
-                
+
                 // 새 알림 생성
                 const notification = document.createElement('div');
                 notification.className = `notification notification-${type}`;
@@ -554,7 +563,7 @@
                         <button class="notification-close">&times;</button>
                     </div>
                 `;
-                
+
                 // 스타일 적용
                 notification.style.cssText = `
                     position: fixed;
@@ -569,13 +578,13 @@
                     max-width: 400px;
                     animation: slideInRight 0.3s ease;
                 `;
-                
+
                 // 닫기 버튼 이벤트
                 const closeBtn = notification.querySelector('.notification-close');
                 closeBtn.addEventListener('click', () => {
                     notification.remove();
                 });
-                
+
                 // 자동 제거 (5초 후)
                 setTimeout(() => {
                     if (notification.parentNode) {
@@ -583,10 +592,11 @@
                         setTimeout(() => notification.remove(), 300);
                     }
                 }, 5000);
-                
+
                 document.body.appendChild(notification);
             }
         });
     </script>
 </body>
+
 </html>

@@ -1,0 +1,10 @@
+# 테스트 및 개발용 파일 배포 제외
+test-contact.html
+simple-test.html
+server.js
+google-apps-script.js
+test-google-sheets.js
+config.example
+*.log
+node_modules/
+docs/

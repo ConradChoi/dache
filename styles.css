@@ -2461,3 +2461,115 @@ main {
         padding: 0.5rem 0.25rem;
     }
 }
+
+/* ===== Reviews Slider ===== */
+.reviews {
+    background: var(--light-bg);
+    padding: var(--section-padding) 0;
+}
+
+.reviews-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.reviews-subtitle {
+    color: var(--light-text);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.reviews-slider-wrapper {
+    overflow: hidden;
+    border-radius: var(--border-radius-lg);
+}
+
+.reviews-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.review-card {
+    min-width: 100%;
+    background: var(--background-color);
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.review-quote {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.review-quote::before {
+    content: '\201C';
+    color: var(--primary-color);
+    font-size: 4rem;
+    line-height: 0;
+    vertical-align: -1.5rem;
+    margin-right: 0.25rem;
+}
+
+.review-author {
+    margin-top: 1.5rem;
+}
+
+.author-info {
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+.reviews-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border-color);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    padding: 0;
+}
+
+.dot.active {
+    background: var(--accent-color);
+}
+
+.dot:hover {
+    background: var(--secondary-color);
+}
+
+/* PC: 3개씩 보이는 슬라이더 */
+@media (min-width: 769px) {
+    .reviews-slider {
+        gap: 1.5rem;
+    }
+
+    .review-card {
+        flex: 0 0 calc(33.333% - 1rem);
+        min-width: calc(33.333% - 1rem);
+    }
+}
+
+/* 모바일: 슬라이더 */
+@media (max-width: 768px) {
+    .review-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .review-quote {
+        font-size: 1rem;
+    }
+}
