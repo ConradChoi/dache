@@ -292,12 +292,12 @@
 
                     <div class="form-group">
                         <label for="birthdate">생년월일 *</label>
-                        <input type="date" id="birthdate" name="birthdate" required>
+                        <input type="date" id="birthdate" name="birthdate" min="1900-01-01" max="9999-12-31" required>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">연락처 *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required>
+                        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" inputmode="numeric" maxlength="13" required>
                     </div>
 
                     <div class="form-group">
@@ -372,7 +372,7 @@
                         </ul>
                         <label class="privacy-consent-check">
                             <input type="checkbox" id="privacy_agreed" name="privacy_agreed" required>
-                            <span>위 개인정보 수집·이용에 동의합니다. <a href="privacy.html" target="_blank">개인정보처리방침 보기</a></span>
+                            <span>위 개인정보 수집·이용에 동의합니다.</span>
                         </label>
                     </div>
 
@@ -490,6 +490,26 @@
                 }
             });
 
+            // 생년월일: 오늘 이후 날짜 선택 방지 (max 속성이 있어야 연도가 4자리로 제한됨)
+            document.getElementById('birthdate').max = new Date().toISOString().slice(0, 10);
+
+            // 연락처: 숫자만 입력해도 010-1234-5678 형식으로 자동 변환
+            // (하이픈 없이 저장되면 구글 시트가 숫자로 인식해 맨 앞 0이 사라짐)
+            function formatPhone(value) {
+                const digits = value.replace(/\D/g, '').slice(0, 11);
+                if (digits.length <= 3) return digits;
+                if (digits.length <= 7) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+                if (digits.length === 10 && !digits.startsWith('010')) {
+                    return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+                }
+                return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+            }
+
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function () {
+                this.value = formatPhone(this.value);
+            });
+
             // 폼 제출 처리
             const contactForm = document.querySelector('.contact-form');
             contactForm.addEventListener('submit', function (e) {
@@ -499,7 +519,7 @@
                 const formData = new FormData(this);
                 const name = formData.get('name');
                 const birthdate = formData.get('birthdate');
-                const phone = formData.get('phone');
+                const phone = formatPhone(formData.get('phone'));
                 const email = formData.get('email');
                 const gender = formData.get('gender');
                 const education = formData.get('education') === 'other' ? formData.get('education-other') : formData.get('education');
@@ -511,6 +531,11 @@
                 // 간단한 유효성 검사
                 if (!name || !birthdate || !phone || !email || !gender || !education || !region || !occupation || !income || !pastDecision) {
                     showNotification('필수 항목을 모두 입력해주세요.', 'error');
+                    return;
+                }
+
+                if (!/^\d{3}-\d{3,4}-\d{4}$/.test(phone)) {
+                    showNotification('올바른 연락처를 입력해주세요. (예: 010-1234-5678)', 'error');
                     return;
                 }
 
