@@ -10,8 +10,8 @@
     <meta property="og:title" content="다채 - 문의 & 티타임 예약">
     <meta property="og:description" content="다채 가입 문의 및 매치메이커와의 티타임을 예약하세요">
     <meta property="og:image" content="https://www.dache.kr/data/dache_mainbg_1024x768.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="768">
     <meta property="og:url" content="https://www.dache.kr/contact.html">
     <meta property="og:site_name" content="다채">
     <meta property="og:locale" content="ko_KR">
@@ -106,6 +106,48 @@
 
         .other-input {
             margin-top: 10px;
+        }
+
+        .privacy-consent {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .privacy-consent-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .privacy-consent ul {
+            padding-left: 18px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .privacy-consent-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .privacy-consent-check input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .privacy-consent-check a {
+            color: #76dbb9;
         }
 
         .btn-primary {
@@ -320,6 +362,20 @@
                         </select>
                     </div>
 
+                    <div class="privacy-consent">
+                        <p class="privacy-consent-title">개인정보 수집·이용 동의 (필수)</p>
+                        <ul>
+                            <li>수집 항목: 이름, 생년월일, 연락처, 이메일, 성별, 학력, 거주지역, 직업, 소득, 결혼정보업체 가입 경험</li>
+                            <li>수집 목적: 가입 문의 상담 및 매칭 서비스 안내</li>
+                            <li>보유 기간: 상담 완료 또는 회원 탈퇴 시까지 (관계 법령에 따라 보존이 필요한 경우 해당 기간까지)</li>
+                            <li>동의를 거부할 수 있으며, 거부 시 상담 신청이 제한됩니다.</li>
+                        </ul>
+                        <label class="privacy-consent-check">
+                            <input type="checkbox" id="privacy_agreed" name="privacy_agreed" required>
+                            <span>위 개인정보 수집·이용에 동의합니다. <a href="privacy.html" target="_blank">개인정보처리방침 보기</a></span>
+                        </label>
+                    </div>
+
                     <button type="submit" class="btn btn-primary">매치메이커에게 전달하기</button>
                 </form>
 
@@ -348,7 +404,7 @@
                     <h4>고객 지원</h4>
                     <div class="social-links">
                         <a href="https://open.kakao.com/me/dache" target="_blank" class="social-link" title="카카오톡 오픈채팅">
-                            <i class="fab fa-kickstarter-k"></i>
+                            <i class="fas fa-comment"></i>
                         </a>
                         <a href="https://www.threads.com/@dache_matching" target="_blank" class="social-link"
                             title="Threads">
@@ -386,11 +442,9 @@
             const navOverlay = document.querySelector('.nav-overlay');
             const nav = document.querySelector('.nav');
 
-            console.log('Mobile menu elements:', { mobileMenuToggle, navOverlay, nav });
 
             if (mobileMenuToggle) {
                 mobileMenuToggle.addEventListener('click', function (e) {
-                    console.log('Mobile menu toggle clicked');
                     e.preventDefault();
                     const navMenu = nav.querySelector('.nav-menu');
                     navMenu.classList.toggle('active');
@@ -465,6 +519,11 @@
                     return;
                 }
 
+                if (!formData.get('privacy_agreed')) {
+                    showNotification('개인정보 수집·이용에 동의해주세요.', 'error');
+                    return;
+                }
+
                 // Google Apps Script로 데이터 전송
                 const inquiryData = {
                     name,
@@ -477,6 +536,7 @@
                     occupation,
                     income,
                     past_decision: pastDecision,
+                    privacy_agreed: 'Y',
                     timestamp: new Date().toISOString(),
                     ip_address: 'N/A',
                     user_agent: navigator.userAgent
@@ -495,15 +555,9 @@
                 const script = document.createElement('script');
                 const callbackName = 'callback_' + Date.now();
 
-                console.log('JSONP 요청 시작:', callbackName);
-                console.log('전송할 데이터:', inquiryData);
-
                 // 전역 콜백 함수 생성
                 window[callbackName] = function (response) {
-                    console.log('Google Apps Script 응답 받음:', response);
-
                     if (response && response.success) {
-                        console.log('성공: 데이터가 스프레드시트에 저장됨');
                         showNotification('가입 문의가 성공적으로 등록되었습니다. 빠른 시일 내에 연락드리겠습니다.', 'success');
                         this.reset();
                     } else {

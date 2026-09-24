@@ -50,16 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 네비게이션 링크 클릭 시 모바일 메뉴 닫기
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const targetNav = navMenu || nav;
-            if (targetNav && targetNav.classList.contains('active')) {
-                targetNav.classList.remove('active');
-                const spans = mobileMenuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
+        link.addEventListener('click', closeMobileMenu);
     });
 
     // Close icon 클릭 시 모바일 메뉴 닫기
@@ -338,7 +329,11 @@ function initReviewsSlider() {
         if (Math.abs(diff) > 50) { stopAuto(); goTo(currentIndex + (diff > 0 ? 1 : -1)); startAuto(); }
     });
 
+    // 모바일은 스크롤 중 주소창 표시/숨김으로도 resize가 발생하므로 너비가 바뀔 때만 초기화
+    let lastWidth = window.innerWidth;
     window.addEventListener('resize', () => {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
         stopAuto();
         currentIndex = 0;
         slider.style.transform = '';

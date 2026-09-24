@@ -1,16 +1,11 @@
 version: 1
 frontend:
   phases:
-    preBuild:
-      commands:
-        - npm install
     build:
       commands:
         - echo "Static site build completed"
   artifacts:
-    baseDirectory: /
+    # public/ 폴더만 배포 (테스트 파일, server.js, Apps Script 코드 등은 공개되지 않음)
+    baseDirectory: public
     files:
       - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*

@@ -42,15 +42,21 @@
 
 ```
 dache/
-├── index.html              # 메인 페이지
-├── terms.html              # 이용약관 페이지
-├── privacy.html            # 개인정보처리방침 페이지
-├── refund.html             # 환불정책 페이지
-├── test-contact.html       # 문의 폼 테스트 페이지
-├── simple-test.html        # Google Apps Script 연결 테스트 페이지
-├── styles.css              # 메인 스타일시트
-├── script.js               # 메인 JavaScript 파일
-├── google-apps-script.js   # Google Apps Script 코드
+├── public/                 # 배포 대상 (이 폴더만 dache.kr에 공개됨)
+│   ├── index.html          # 메인 페이지
+│   ├── contact.html        # 문의 & 티타임 페이지
+│   ├── faq.html            # FAQ 페이지
+│   ├── ceo-message.html    # 대표 인사말 페이지
+│   ├── terms.html          # 이용약관 페이지
+│   ├── privacy.html        # 개인정보처리방침 페이지
+│   ├── refund.html         # 환불정책 페이지
+│   ├── styles.css          # 메인 스타일시트
+│   ├── script.js           # 메인 JavaScript 파일
+│   ├── robots.txt / sitemap.xml
+│   └── data/               # 이미지
+├── test-contact.html       # 문의 폼 테스트 페이지 (배포 제외)
+├── simple-test.html        # Google Apps Script 연결 테스트 페이지 (배포 제외)
+├── google-apps-script.js   # Google Apps Script 코드 (배포 제외)
 ├── .gitignore              # Git 제외 파일 목록
 └── README.md               # 프로젝트 설명서
 ```
@@ -66,10 +72,10 @@ cd dache
 ### 2. 로컬 서버 실행
 ```bash
 # Python 3
-python3 -m http.server 8000
+python3 -m http.server 8000 --directory public
 
 # 또는 Node.js
-npx http-server -p 8000
+npx http-server public -p 8000
 ```
 
 ### 3. 브라우저에서 접속

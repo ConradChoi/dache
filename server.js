@@ -92,7 +92,7 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 // 정적 파일 제공 (온라인 환경 고려)
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 요청 로깅 미들웨어
 app.use((req, res, next) => {
@@ -505,7 +505,7 @@ app.get('/api/health', async (req, res) => {
 
 // 메인 페이지 라우트
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // 404 처리
